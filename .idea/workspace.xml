@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2dab982f-4b9a-4de9-a2f7-296db20ce877" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +38,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.36091954" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="Plugin" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
@@ -68,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1634195001575</updated>
       <workItem from="1634195003934" duration="2589000" />
-      <workItem from="1634198860116" duration="1792000" />
+      <workItem from="1634198860116" duration="3311000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1634202625346</created>
@@ -84,7 +85,28 @@
       <option name="project" value="LOCAL" />
       <updated>1634202870078</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added gitignore file">
+      <created>1634202977125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634202977125</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added some files to git">
+      <created>1634203034754</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1634203034754</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added some files to git">
+      <created>1634203572756</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1634203572756</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +117,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Removed out folder from git" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed out folder from git" />
+    <MESSAGE value="added gitignore file" />
+    <MESSAGE value="added some files to git" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some files to git" />
   </component>
 </project>
