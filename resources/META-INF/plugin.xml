@@ -1,17 +1,15 @@
 <idea-plugin>
-  <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
-  <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <id>com.senn.aem.plugin.intellij.compgen</id>
+  <name>AEM Component Generator</name>
+  <version>0.1.1</version>
+  <vendor email="bart.senn@gmail.com" url="https://github.com/senn">senn</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Plugin that can easily create AEM component files (
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      Initial plugin
     ]]>
   </change-notes>
 
@@ -27,7 +25,14 @@
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
+    <action
+            id="Senn.AEM.CompGen.Create"
+            class="com.senn.aem.plugin.intellij.compgen.actions.OnClickCreateAction"
+            text="Create AEM Component Files"
+            description="Create files required for AEM components"
+            icon="aemlogo.png">
+      <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile" />
+    </action>
   </actions>
 
 </idea-plugin>

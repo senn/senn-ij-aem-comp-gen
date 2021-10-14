@@ -4,53 +4,87 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dab982f-4b9a-4de9-a2f7-296db20ce877" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/package-info.java" afterDir="false" />
+    <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/aemlogo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ComponentFilesCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialogOld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Action" />
         <option value="Class" />
-        <option value="package-info" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1zUFwabAfgxK5XsZUDMegynRGsK" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1zUanfEmRe6Bdp5a5YT6ZLYhcom" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/jbr" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.36091954" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspaces\intellij\senn\senn-ij-aem-comp-gen\resources\META-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspaces\intellij\senn\senn-ij-aem-comp-gen\resources" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration name="Plugin" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="senn-ij-aem-comp-gen" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="senn-ij-aem-comp-gen" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -ea" />
@@ -60,73 +94,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="aem compgen" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="senn-ij-aem-comp-gen" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -ea" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <output_file path="$PROJECT_DIR$/../../../../temp/plugin.log" is_save="true" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="MakeProject" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2dab982f-4b9a-4de9-a2f7-296db20ce877" name="Changes" comment="" />
-      <created>1634195001575</created>
+      <changelist id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="" />
+      <created>1634204889146</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1634195001575</updated>
-      <workItem from="1634195003934" duration="2589000" />
-      <workItem from="1634198860116" duration="3744000" />
+      <updated>1634204889146</updated>
+      <workItem from="1634204891106" duration="394000" />
+      <workItem from="1634205291410" duration="2627000" />
+      <workItem from="1634207986547" duration="493000" />
+      <workItem from="1634210535762" duration="223000" />
+      <workItem from="1634210880482" duration="55000" />
+      <workItem from="1634211109630" duration="65000" />
+      <workItem from="1634211810447" duration="6021000" />
+      <workItem from="1634224712122" duration="1966000" />
+      <workItem from="1634226727851" duration="708000" />
+      <workItem from="1634230713408" duration="278000" />
     </task>
-    <task id="LOCAL-00001" summary="Initial commit">
-      <created>1634202625346</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1634202625346</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Removed out folder from git">
-      <created>1634202870078</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1634202870078</updated>
-    </task>
-    <task id="LOCAL-00003" summary="added gitignore file">
-      <created>1634202977125</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1634202977125</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added some files to git">
-      <created>1634203034754</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1634203034754</updated>
-    </task>
-    <task id="LOCAL-00005" summary="added some files to git">
-      <created>1634203572756</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1634203572756</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added some files to git">
-      <created>1634204790310</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1634204790310</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="Removed out folder from git" />
-    <MESSAGE value="added gitignore file" />
-    <MESSAGE value="added some files to git" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some files to git" />
   </component>
 </project>
