@@ -5,14 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/aemlogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ComponentFilesCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialogOld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
@@ -124,10 +116,25 @@
       <workItem from="1634224712122" duration="1966000" />
       <workItem from="1634226727851" duration="708000" />
       <workItem from="1634230713408" duration="278000" />
+      <workItem from="1634231067260" duration="1103000" />
     </task>
+    <task id="LOCAL-00001" summary="work in progress 1">
+      <created>1634231384327</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1634231384327</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="work in progress 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress 1" />
   </component>
 </project>
