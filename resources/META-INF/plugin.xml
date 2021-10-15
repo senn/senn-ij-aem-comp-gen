@@ -28,7 +28,7 @@
     <action
             id="Senn.AEM.CompGen.Create"
             class="com.senn.aem.plugin.intellij.compgen.actions.OnClickCreateAction"
-            text="Create AEM Component Files"
+            text="AEM Component Files"
             description="Create files required for AEM components"
             icon="aemlogo.png">
       <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile" />
