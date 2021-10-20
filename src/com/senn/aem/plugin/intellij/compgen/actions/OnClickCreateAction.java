@@ -4,9 +4,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
+import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
+import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
-import java.io.File;
-import java.io.IOException;
+import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,14 +25,25 @@ public class OnClickCreateAction extends DumbAwareAction {
         dialog.setCrossClosesWindow(true);
         dialog.setOKActionEnabled(true);
         if(dialog.showAndGet()) {
-            try {
-                File.createTempFile(dialog.getSelectedValues(), ".tmp", new File("c:/temp"));
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+            final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance();
+
+            //update session constants
+            IJSessionConstants.SELECT_HTML = dialog.makeHtml();
+            IJSessionConstants.JAVA_ROOT = dialog.getJavaRoot();
+            IJSessionConstants.PACKAGE = dialog.getPackageName();
+            IJSessionConstants.SELECT_HTML = dialog.makeHtml();
+            IJSessionConstants.SELECT_DIALOG_XML = dialog.makeDialogXml();
+            IJSessionConstants.SELECT_EDIT_CONFIG_XML = dialog.makeEditConfigXml();
+            IJSessionConstants.SELECT_JS = dialog.makeJavaScriptFiles();
+            IJSessionConstants.SELECT_CSS = dialog.makeCSSFiles();
+            IJSessionConstants.SELECT_SLING_MODEL = dialog.makeSlingModelCode();
+
+            if(dialog.makeDialogXml()) creator.createDialogXmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
+            if(dialog.makeEditConfigXml()) creator.createEditConfigXmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
+            if(dialog.makeHtml()) creator.createHtmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
+            if(dialog.makeCSSFiles()) creator.createCSSFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
+            if(dialog.makeJavaScriptFiles()) creator.createJavaScriptFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
+            if(dialog.makeSlingModelCode()) creator.createSlingModelCodeFiles(dialog.getComponentName(), dialog.getJavaRoot(), dialog.getPackageName());
         }
-
     }
-
 }
