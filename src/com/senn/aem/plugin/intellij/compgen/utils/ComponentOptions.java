@@ -66,4 +66,20 @@ public class ComponentOptions {
     public boolean makeHtml() {
         return makeHtml;
     }
+
+    @Override
+    public String toString() {
+        return "ComponentOptions{" +
+                "componentName='" + componentName + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", uiAppsRoot='" + uiAppsRoot + '\'' +
+                ", javaCodeRoot='" + javaCodeRoot + '\'' +
+                ", makeDialogXml=" + makeDialogXml +
+                ", makeSlingModelCode=" + makeSlingModelCode +
+                ", makeEditConfigXml=" + makeEditConfigXml +
+                ", makeJS=" + makeJS +
+                ", makeCSS=" + makeCSS +
+                ", makeHtml=" + makeHtml +
+                '}';
+    }
 }

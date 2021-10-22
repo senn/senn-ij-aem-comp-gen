@@ -8,19 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/UIUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentOptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/PathUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentOptions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +127,7 @@
       <workItem from="1634742919207" duration="5170000" />
       <workItem from="1634825261740" duration="11000" />
       <workItem from="1634825306194" duration="184000" />
-      <workItem from="1634825539573" duration="9402000" />
+      <workItem from="1634825539573" duration="11078000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -166,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634742645252</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="working file creation and notifications">
+      <created>1634913726171</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1634913726171</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +177,7 @@
     <MESSAGE value="renamed action label" />
     <MESSAGE value="updated workspace.xml" />
     <MESSAGE value="refactored and changed a whole lot (session constants, more config options, ...)" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored and changed a whole lot (session constants, more config options, ...)" />
+    <MESSAGE value="working file creation and notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="working file creation and notifications" />
   </component>
 </project>

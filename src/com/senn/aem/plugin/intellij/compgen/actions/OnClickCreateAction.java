@@ -11,6 +11,8 @@ import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
 import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
 import com.senn.aem.plugin.intellij.compgen.utils.ComponentOptions;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Action that is triggered when a user clicks on the create button
@@ -18,8 +20,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public class OnClickCreateAction extends DumbAwareAction {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OnClickCreateAction.class);
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
+        LOGGER.info("actionPerformed called");
         final Project project = event.getData(CommonDataKeys.PROJECT);
         if (project == null) return;
 
@@ -51,6 +56,7 @@ public class OnClickCreateAction extends DumbAwareAction {
             IJSessionConstants.SELECT_JS = userOptions.makeJS();
             IJSessionConstants.SELECT_CSS = userOptions.makeCSS();
             IJSessionConstants.SELECT_SLING_MODEL = userOptions.makeSlingModelCode();
+            LOGGER.info("Setting session constants to selected values: " + userOptions);
 
             try {
                 if (userOptions.makeDialogXml()) creator.createDialogXmlFiles();
@@ -60,6 +66,7 @@ public class OnClickCreateAction extends DumbAwareAction {
                 if (userOptions.makeJS()) creator.createJavaScriptFiles();
                 if (userOptions.makeSlingModelCode()) creator.createSlingModelCodeFiles();
             } catch(Exception e) {
+                LOGGER.error("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), e);
                 UIUtils.notifyError("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), project);
             }
         }

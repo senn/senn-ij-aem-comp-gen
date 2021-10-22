@@ -16,12 +16,16 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Ideally we want to work with actual templates in IntelliJ but for now an <i>on-the-fly</i> file generation approach will do.
  * @author bart.senn@gmail.com
  */
 public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileWritingComponentFilesCreator.class);
 
     private final Project project;
     private final ComponentOptions componentOptions;
@@ -33,8 +37,12 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
     @Override
     public void createHtmlFiles() {
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createHtmlFiles for " + componentOptions.getComponentName());
+
         try(InputStream htmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/senn_aem.html")) {
             if (htmlStream == null) {
+                LOGGER.error("An error occurred while reading the HTML template");
                 UIUtils.notifyError("An error occurred while reading the HTML template", project);
                 return;
             }
@@ -55,6 +63,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                     final File componentFileDir = new File(fullUiAppsRootPath);
 
                     if (!componentFileDir.mkdirs() && componentFileDir.canWrite()) {
+                        LOGGER.error("An error occurred while creating the component folder path");
                         UIUtils.notifyError("An error occurred while creating the component folder path", project);
                         return;
                     }
@@ -66,6 +75,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                 htmlWriter.write(htmlLine);
                                 htmlWriter.newLine();
                             } catch(IOException ioe) {
+                                LOGGER.error(ioe.getMessage(), ioe);
                                 ioe.printStackTrace();
                             }
                         });
@@ -73,37 +83,50 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                 }
             }
         } catch(IOException ioe) {
+            LOGGER.error(ioe.getMessage(), ioe);
             ioe.printStackTrace();
         }
+        LOGGER.info("Finished createHtmlFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @Override
     public void createJavaScriptFiles() {
-
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createJavaScriptFiles for " + componentOptions.getComponentName());
+        //TODO: impl
+        LOGGER.info("Finished createJavaScriptFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @Override
     public void createCSSFiles() {
-
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createCSSFiles for " + componentOptions.getComponentName());
+        //TODO: impl
+        LOGGER.info("Finished createCSSFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @Override
     public void createDialogXmlFiles() {
-
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createDialogXmlFiles for " + componentOptions.getComponentName());
+        //TODO: impl
+        LOGGER.info("Finished createDialogXmlFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @Override
     public void createEditConfigXmlFiles() {
-
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createEditConfigXmlFiles for " + componentOptions.getComponentName());
+        //TODO: impl
+        LOGGER.info("Finished createEditConfigXmlFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @Override
     public void createSlingModelCodeFiles() {
-
-    }
-
-    private void log(String msg) {
-        System.out.println(msg);
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createSlingModelCodeFiles for " + componentOptions.getComponentName());
+        //TODO: impl
+        LOGGER.info("Finished createSlingModelCodeFiles for " + componentOptions.getComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
 }
