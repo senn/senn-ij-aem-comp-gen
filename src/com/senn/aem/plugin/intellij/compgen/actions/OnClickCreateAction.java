@@ -8,6 +8,8 @@ import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
 import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
+import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
+import com.senn.aem.plugin.intellij.compgen.utils.ComponentOptions;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -25,25 +27,41 @@ public class OnClickCreateAction extends DumbAwareAction {
         dialog.setCrossClosesWindow(true);
         dialog.setOKActionEnabled(true);
         if(dialog.showAndGet()) {
-            final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance();
+            final ComponentOptions userOptions = new ComponentOptions(
+                    dialog.getComponentName(),
+                    dialog.getUiAppsRoot(),
+                    dialog.getJavaRoot(),
+                    dialog.getPackageName(),
+                    dialog.makeDialogXml(),
+                    dialog.makeSlingModelCode(),
+                    dialog.makeEditConfigXml(),
+                    dialog.makeJavaScriptFiles(),
+                    dialog.makeCSSFiles(),
+                    dialog.makeHtml()
+            );
+            final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance(project, userOptions);
 
             //update session constants
-            IJSessionConstants.SELECT_HTML = dialog.makeHtml();
-            IJSessionConstants.JAVA_ROOT = dialog.getJavaRoot();
-            IJSessionConstants.PACKAGE = dialog.getPackageName();
-            IJSessionConstants.SELECT_HTML = dialog.makeHtml();
-            IJSessionConstants.SELECT_DIALOG_XML = dialog.makeDialogXml();
-            IJSessionConstants.SELECT_EDIT_CONFIG_XML = dialog.makeEditConfigXml();
-            IJSessionConstants.SELECT_JS = dialog.makeJavaScriptFiles();
-            IJSessionConstants.SELECT_CSS = dialog.makeCSSFiles();
-            IJSessionConstants.SELECT_SLING_MODEL = dialog.makeSlingModelCode();
+            IJSessionConstants.SELECT_HTML = userOptions.makeHtml();
+            IJSessionConstants.JAVA_ROOT = userOptions.getJavaCodeRoot();
+            IJSessionConstants.PACKAGE = userOptions.getPackageName();
+            IJSessionConstants.SELECT_HTML = userOptions.makeHtml();
+            IJSessionConstants.SELECT_DIALOG_XML = userOptions.makeDialogXml();
+            IJSessionConstants.SELECT_EDIT_CONFIG_XML = userOptions.makeEditConfigXml();
+            IJSessionConstants.SELECT_JS = userOptions.makeJS();
+            IJSessionConstants.SELECT_CSS = userOptions.makeCSS();
+            IJSessionConstants.SELECT_SLING_MODEL = userOptions.makeSlingModelCode();
 
-            if(dialog.makeDialogXml()) creator.createDialogXmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
-            if(dialog.makeEditConfigXml()) creator.createEditConfigXmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
-            if(dialog.makeHtml()) creator.createHtmlFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
-            if(dialog.makeCSSFiles()) creator.createCSSFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
-            if(dialog.makeJavaScriptFiles()) creator.createJavaScriptFiles(dialog.getComponentName(), dialog.getUiAppsRoot());
-            if(dialog.makeSlingModelCode()) creator.createSlingModelCodeFiles(dialog.getComponentName(), dialog.getJavaRoot(), dialog.getPackageName());
+            try {
+                if (userOptions.makeDialogXml()) creator.createDialogXmlFiles();
+                if (userOptions.makeEditConfigXml()) creator.createEditConfigXmlFiles();
+                if (userOptions.makeHtml()) creator.createHtmlFiles();
+                if (userOptions.makeCSS()) creator.createCSSFiles();
+                if (userOptions.makeJS()) creator.createJavaScriptFiles();
+                if (userOptions.makeSlingModelCode()) creator.createSlingModelCodeFiles();
+            } catch(Exception e) {
+                UIUtils.notifyError("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), project);
+            }
         }
     }
 }

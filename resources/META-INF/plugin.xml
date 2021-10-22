@@ -21,7 +21,7 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <notificationGroup id="Senn.AEM" displayType="BALLOON" key="com.senn.aem"/>
   </extensions>
 
   <actions>

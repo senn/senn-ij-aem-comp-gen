@@ -113,7 +113,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="src/main/content/jcr_root/apps/"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="c502" class="javax.swing.JLabel">

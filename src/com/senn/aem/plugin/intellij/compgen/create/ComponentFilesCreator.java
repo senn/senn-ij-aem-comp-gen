@@ -6,10 +6,10 @@ package com.senn.aem.plugin.intellij.compgen.create;
  */
 public interface ComponentFilesCreator {
 
-    void createHtmlFiles(String componentName, String uiAppsRoot);
-    void createJavaScriptFiles(String componentName, String uiAppsRoot);
-    void createCSSFiles(String componentName, String uiAppsRoot);
-    void createDialogXmlFiles(String componentName, String uiAppsRoot);
-    void createEditConfigXmlFiles(String componentName, String uiAppsRoot);
-    void createSlingModelCodeFiles(String componentName, String javaRoot, String packageName);
+    void createHtmlFiles();
+    void createJavaScriptFiles();
+    void createCSSFiles();
+    void createDialogXmlFiles();
+    void createEditConfigXmlFiles();
+    void createSlingModelCodeFiles();
 }
