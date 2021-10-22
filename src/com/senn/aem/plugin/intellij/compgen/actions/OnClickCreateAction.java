@@ -65,6 +65,8 @@ public class OnClickCreateAction extends DumbAwareAction {
                 if (userOptions.makeCSS()) creator.createCSSFiles();
                 if (userOptions.makeJS()) creator.createJavaScriptFiles();
                 if (userOptions.makeSlingModelCode()) creator.createSlingModelCodeFiles();
+
+                UIUtils.notifyInfo("Component files create for '" + userOptions.getComponentName() + "'", project);
             } catch(Exception e) {
                 LOGGER.error("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), e);
                 UIUtils.notifyError("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), project);
