@@ -4,12 +4,14 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.ex.VirtualFileManagerEx;
+import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
 import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
 import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
-import com.senn.aem.plugin.intellij.compgen.utils.ComponentOptions;
+import com.senn.aem.plugin.intellij.compgen.utils.ComponentConfig;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ public class OnClickCreateAction extends DumbAwareAction {
         dialog.setCrossClosesWindow(true);
         dialog.setOKActionEnabled(true);
         if(dialog.showAndGet()) {
-            final ComponentOptions userOptions = new ComponentOptions(
+            final ComponentConfig compConfig = new ComponentConfig(
                     dialog.getComponentName(),
                     dialog.getUiAppsRoot(),
                     dialog.getJavaRoot(),
@@ -44,33 +46,43 @@ public class OnClickCreateAction extends DumbAwareAction {
                     dialog.makeCSSFiles(),
                     dialog.makeHtml()
             );
-            final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance(project, userOptions);
 
-            //update session constants
-            IJSessionConstants.SELECT_HTML = userOptions.makeHtml();
-            IJSessionConstants.JAVA_ROOT = userOptions.getJavaCodeRoot();
-            IJSessionConstants.PACKAGE = userOptions.getPackageName();
-            IJSessionConstants.SELECT_HTML = userOptions.makeHtml();
-            IJSessionConstants.SELECT_DIALOG_XML = userOptions.makeDialogXml();
-            IJSessionConstants.SELECT_EDIT_CONFIG_XML = userOptions.makeEditConfigXml();
-            IJSessionConstants.SELECT_JS = userOptions.makeJS();
-            IJSessionConstants.SELECT_CSS = userOptions.makeCSS();
-            IJSessionConstants.SELECT_SLING_MODEL = userOptions.makeSlingModelCode();
-            LOGGER.info("Setting session constants to selected values: " + userOptions);
+            updateSessionConstants(compConfig);
 
             try {
-                if (userOptions.makeDialogXml()) creator.createDialogXmlFiles();
-                if (userOptions.makeEditConfigXml()) creator.createEditConfigXmlFiles();
-                if (userOptions.makeHtml()) creator.createHtmlFiles();
-                if (userOptions.makeCSS()) creator.createCSSFiles();
-                if (userOptions.makeJS()) creator.createJavaScriptFiles();
-                if (userOptions.makeSlingModelCode()) creator.createSlingModelCodeFiles();
+                createComponentFiles(compConfig, project);
 
-                UIUtils.notifyInfo("Component files create for '" + userOptions.getComponentName() + "'", project);
-            } catch(Exception e) {
-                LOGGER.error("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), e);
-                UIUtils.notifyError("An unexpected error occurred while trying to create the AEM component files: " + e.getMessage(), project);
+                //success notification
+                UIUtils.notifyInfo("Component files created for '" + compConfig.getFullComponentName() + "'", project);
+            } catch(ComponentCreationException cce) {
+                //error notification
+                UIUtils.notifyError(cce.getMessage(), project);
             }
+            //update UI
+            VirtualFileManagerEx.getInstance().refreshWithoutFileWatcher(false);
         }
+    }
+
+    private void updateSessionConstants(final ComponentConfig cfg) {
+        IJSessionConstants.SELECT_HTML = cfg.makeHtml();
+        IJSessionConstants.JAVA_ROOT = cfg.getJavaCodeRoot();
+        IJSessionConstants.PACKAGE = cfg.getPackageName();
+        IJSessionConstants.SELECT_HTML = cfg.makeHtml();
+        IJSessionConstants.SELECT_DIALOG_XML = cfg.makeDialogXml();
+        IJSessionConstants.SELECT_EDIT_CONFIG_XML = cfg.makeEditConfigXml();
+        IJSessionConstants.SELECT_JS = cfg.makeJS();
+        IJSessionConstants.SELECT_CSS = cfg.makeCSS();
+        IJSessionConstants.SELECT_SLING_MODEL = cfg.makeSlingModelCode();
+        LOGGER.info("Setting session constants to selected values: " + cfg);
+    }
+
+    private void createComponentFiles(final ComponentConfig userOptions, final Project project) throws ComponentCreationException {
+        final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance(project, userOptions);
+        if (userOptions.makeDialogXml()) creator.createDialogXmlFiles();
+        if (userOptions.makeEditConfigXml()) creator.createEditConfigXmlFiles();
+        if (userOptions.makeHtml()) creator.createHtmlFiles();
+        if (userOptions.makeCSS()) creator.createCSSFiles();
+        if (userOptions.makeJS()) creator.createJavaScriptFiles();
+        if (userOptions.makeSlingModelCode()) creator.createSlingModelCodeFiles();
     }
 }

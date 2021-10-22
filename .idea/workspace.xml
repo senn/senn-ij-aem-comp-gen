@@ -8,8 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ComponentCreationException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +134,7 @@
       <workItem from="1634742919207" duration="5170000" />
       <workItem from="1634825261740" duration="11000" />
       <workItem from="1634825306194" duration="184000" />
-      <workItem from="1634825539573" duration="11508000" />
+      <workItem from="1634825539573" duration="20453000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -169,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634915563555</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="success notification when finished">
+      <created>1634915822550</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1634915822550</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +200,7 @@
     <MESSAGE value="refactored and changed a whole lot (session constants, more config options, ...)" />
     <MESSAGE value="working file creation and notifications" />
     <MESSAGE value="some logging added" />
-    <option name="LAST_COMMIT_MESSAGE" value="some logging added" />
+    <MESSAGE value="success notification when finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="success notification when finished" />
   </component>
 </project>

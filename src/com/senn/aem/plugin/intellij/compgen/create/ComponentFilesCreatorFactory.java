@@ -2,7 +2,7 @@ package com.senn.aem.plugin.intellij.compgen.create;
 
 import com.intellij.openapi.project.Project;
 import com.senn.aem.plugin.intellij.compgen.create.impl.FileWritingComponentFilesCreator;
-import com.senn.aem.plugin.intellij.compgen.utils.ComponentOptions;
+import com.senn.aem.plugin.intellij.compgen.utils.ComponentConfig;
 
 /**
  * Simple factory that provides a {@link ComponentFilesCreator} instance.
@@ -10,8 +10,8 @@ import com.senn.aem.plugin.intellij.compgen.utils.ComponentOptions;
  */
 public abstract class ComponentFilesCreatorFactory {
 
-    public static ComponentFilesCreator getInstance(final Project project, final ComponentOptions options) {
-        return new FileWritingComponentFilesCreator(project, options);
+    public static ComponentFilesCreator getInstance(final Project project, final ComponentConfig config) {
+        return new FileWritingComponentFilesCreator(project, config);
     }
 
 }

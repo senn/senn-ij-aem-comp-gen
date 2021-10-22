@@ -1,20 +1,23 @@
 package com.senn.aem.plugin.intellij.compgen.utils;
 
-public class ComponentOptions {
+import org.apache.commons.collections.ListUtils;
+import org.apache.commons.lang.StringUtils;
 
-    private String componentName;
-    private String packageName;
-    private String uiAppsRoot;
-    private String javaCodeRoot;
-    private boolean makeDialogXml;
-    private boolean makeSlingModelCode;
-    private boolean makeEditConfigXml;
-    private boolean makeJS;
-    private boolean makeCSS;
-    private boolean makeHtml;
+public class ComponentConfig {
 
-    public ComponentOptions(String componentName, String uiAppsRoot, String javaCodeRoot, String packageName, boolean makeDialogXml, boolean makeSlingModelCode,
-                            boolean makeEditConfigXml, boolean makeJS, boolean makeCSS, boolean makeHtml) {
+    private final String componentName;
+    private final String packageName;
+    private final String uiAppsRoot;
+    private final String javaCodeRoot;
+    private final boolean makeDialogXml;
+    private final boolean makeSlingModelCode;
+    private final boolean makeEditConfigXml;
+    private final boolean makeJS;
+    private final boolean makeCSS;
+    private final boolean makeHtml;
+
+    public ComponentConfig(String componentName, String uiAppsRoot, String javaCodeRoot, String packageName, boolean makeDialogXml, boolean makeSlingModelCode,
+                           boolean makeEditConfigXml, boolean makeJS, boolean makeCSS, boolean makeHtml) {
         this.componentName = componentName;
         this.javaCodeRoot = javaCodeRoot;
         this.packageName = packageName;
@@ -27,7 +30,7 @@ public class ComponentOptions {
         this.makeHtml = makeHtml;
     }
 
-    public String getComponentName() {
+    public String getFullComponentName() {
         return componentName;
     }
 
@@ -65,6 +68,25 @@ public class ComponentOptions {
 
     public boolean makeHtml() {
         return makeHtml;
+    }
+
+    //calculated methods
+
+    public String getClientlibCategory() {
+        return StringUtils.join(getFullComponentName().split("/"), ".");
+    }
+
+    public String getShortComponentName() {
+        String[] split = getFullComponentName().split("/");
+        return split[split.length - 1]; //last part
+    }
+
+    public String getSlingModelName() {
+        return StringUtils.capitalize(getShortComponentName());
+    }
+
+    public String getFullyQualifiedSlingModelName() {
+        return getPackageName() + "." + getSlingModelName();
     }
 
     @Override

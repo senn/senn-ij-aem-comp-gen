@@ -2,6 +2,7 @@ package com.senn.aem.plugin.intellij.compgen.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import java.awt.*;
 import javax.swing.*;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +31,8 @@ public class ComponentOptionsDialog extends DialogWrapper {
     @Override
     protected void init() {
         super.init();
+
+        mainPanel.setPreferredSize(new Dimension(500, 200));
 
         //init values with session constants
         txtUiAppsRoot.setText(IJSessionConstants.UI_APPS_JCR_ROOT);

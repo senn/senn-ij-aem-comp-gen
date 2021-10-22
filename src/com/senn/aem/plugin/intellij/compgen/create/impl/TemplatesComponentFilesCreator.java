@@ -1,36 +1,37 @@
 package com.senn.aem.plugin.intellij.compgen.create.impl;
 
+import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 
 public class TemplatesComponentFilesCreator implements ComponentFilesCreator {
 
     @Override
-    public void createHtmlFiles() {
+    public void createHtmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createJavaScriptFiles() {
+    public void createJavaScriptFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createCSSFiles() {
+    public void createCSSFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createDialogXmlFiles() {
+    public void createDialogXmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createEditConfigXmlFiles() {
+    public void createEditConfigXmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createSlingModelCodeFiles() {
+    public void createSlingModelCodeFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 }
