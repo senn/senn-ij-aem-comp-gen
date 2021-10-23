@@ -73,6 +73,7 @@ public class OnClickCreateAction extends DumbAwareAction {
         IJSessionConstants.SELECT_JS = cfg.makeJS();
         IJSessionConstants.SELECT_CSS = cfg.makeCSS();
         IJSessionConstants.SELECT_SLING_MODEL = cfg.makeSlingModelCode();
+        IJSessionConstants.UI_APPS_JCR_ROOT = cfg.getUiAppsRoot();
         LOGGER.info("Setting session constants to selected values: " + cfg);
     }
 
