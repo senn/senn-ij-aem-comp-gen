@@ -97,7 +97,11 @@ public class ComponentConfig {
     }
 
     public String getFullyQualifiedSlingModelName() {
-        return getPackageName() + "." + getSlingModelName();
+        String pkg = getPackageName();
+        if(StringUtils.isNotBlank(pkg)) {
+            pkg += ".";
+        }
+        return pkg + getSlingModelName();
     }
 
     @Override
