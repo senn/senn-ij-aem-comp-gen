@@ -7,7 +7,7 @@ package com.senn.aem.plugin.intellij.compgen.ui;
 public class IJSessionConstants {
 
     public static String JAVA_ROOT = "core/src/main/java";
-    public static String UI_APPS_JCR_ROOT = "ui.apps/src/main/content/jcr_root";
+    public static String UI_APPS_ROOT = "ui.apps/src/main/content/jcr_root";
     public static String PACKAGE = "";
 
     public static boolean SELECT_HTML = true;

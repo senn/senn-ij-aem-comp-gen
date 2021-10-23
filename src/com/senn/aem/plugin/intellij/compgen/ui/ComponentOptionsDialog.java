@@ -35,7 +35,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
         mainPanel.setPreferredSize(new Dimension(500, 200));
 
         //init values with session constants
-        txtUiAppsRoot.setText(IJSessionConstants.UI_APPS_JCR_ROOT);
+        txtUiAppsRoot.setText(IJSessionConstants.UI_APPS_ROOT);
         txtCodeJavaRoot.setText(IJSessionConstants.JAVA_ROOT);
         txtPackage.setText(IJSessionConstants.PACKAGE);
         chkHtml.setSelected(IJSessionConstants.SELECT_HTML);
