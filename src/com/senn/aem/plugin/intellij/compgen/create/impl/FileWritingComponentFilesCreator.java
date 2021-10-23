@@ -1,6 +1,5 @@
 package com.senn.aem.plugin.intellij.compgen.create.impl;
 
-import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
@@ -29,6 +28,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileWritingComponentFilesCreator.class);
 
+    private interface Clientlib {
+        String CSS = "css";
+        String JS = "js";
+    }
+
     private final Project project;
     private final ComponentConfig componentConfig;
 
@@ -42,7 +46,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createHtmlFiles for " + componentConfig.getFullComponentName());
 
-        try(InputStream htmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/senn_aem.html")) {
+        final String fullComponentPath = getFullComponentPath();
+        final File htmlFile = new File(fullComponentPath + componentConfig.getShortComponentName() + ".html");
+        if(htmlFile.exists()) {
+            throw new ComponentCreationException("Component HTML file already exists!");
+        }
+
+        try(InputStream htmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/component.html")) {
             if (htmlStream == null) {
                 throw new ComponentCreationException("An error occurred while reading the HTML template");
             }
@@ -78,26 +88,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                        }
                     }
 
-                    final String fullUiAppsRootPath = project.getBasePath() +
-                            PathUtils.validatePath(componentConfig.getUiAppsRoot(), true, true) +
-                            PathUtils.validatePath(componentConfig.getFullComponentName(), false, true);
-                    final File componentFileDir = new File(fullUiAppsRootPath);
-
-                    if (!componentFileDir.mkdirs() && componentFileDir.canWrite()) {
-                        throw new ComponentCreationException("An error occurred while creating the component folder path: " + fullUiAppsRootPath);
+                    final File componentFileDir = new File(fullComponentPath);
+                    componentFileDir.mkdirs();
+                    if (!componentFileDir.exists() || !componentFileDir.canWrite()) {
+                        throw new ComponentCreationException("An error occurred while creating the component folder path: " + fullComponentPath);
                     }
-                    final File htmlFile = new File(fullUiAppsRootPath + componentConfig.getShortComponentName() + ".html");
 
-                    try(BufferedWriter htmlWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(htmlFile)))) {
-                        htmlContentLines.forEach(htmlLine -> {
-                            try {
-                                htmlWriter.write(htmlLine);
-                                htmlWriter.newLine();
-                            } catch(IOException ioe) {
-                                ioe.printStackTrace();
-                            }
-                        });
-                    }
+                    writeLinesToFile(htmlFile, htmlContentLines);
                 }
             }
         } catch(IOException ioe) {
@@ -110,7 +107,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     public void createJavaScriptFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createJavaScriptFiles for " + componentConfig.getFullComponentName());
-        //TODO: impl
+        createClientlib(Clientlib.JS);
         LOGGER.info("Finished createJavaScriptFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
@@ -118,7 +115,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     public void createCSSFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createCSSFiles for " + componentConfig.getFullComponentName());
-        //TODO: impl
+        createClientlib(Clientlib.CSS);
         LOGGER.info("Finished createCSSFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
@@ -144,6 +141,83 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         LOGGER.info("Started createSlingModelCodeFiles for " + componentConfig.getFullComponentName());
         //TODO: impl
         LOGGER.info("Finished createSlingModelCodeFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+    }
+
+    private String getFullComponentPath() {
+        return project.getBasePath() +
+                PathUtils.validatePath(componentConfig.getUiAppsRoot(), true, true) +
+                PathUtils.validatePath(componentConfig.getFullComponentName(), false, true);
+    }
+
+    private void createClientlib(String clientlibType) throws ComponentCreationException {
+        clientlibType = clientlibType.toLowerCase();
+
+        final String fullComponentPath = getFullComponentPath();
+        //make directories
+        final String clientlibPath = getFullComponentPath() + "clientlib";
+        final String clientlibTypePath = PathUtils.validatePath(clientlibPath, false, true) + clientlibType;
+        File clientlibDir = new File(clientlibTypePath);
+        clientlibDir.mkdirs();
+
+        //make actual files
+        try {
+            //clientlib overview file (js.txt / css.txt)
+            final File overviewFile = new File(PathUtils.validatePath(clientlibPath, false, true) + clientlibType + ".txt");
+            try (BufferedWriter overviewFileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(overviewFile)))) {
+                overviewFileWriter.write("#base=" + clientlibType);
+                overviewFileWriter.newLine();
+                overviewFileWriter.newLine();
+                overviewFileWriter.write( componentConfig.getShortComponentName() + "." + clientlibType);
+            }
+
+            //clientlib folder .content.xml file
+            File contentFile = new File(PathUtils.validatePath(clientlibPath, false, true) + ".content.xml");
+            if(!contentFile.exists()) {
+                try (InputStream clientlibContentStream = PathUtils.getResourceAsStream("fileTemplates/internal/clientlib.content.xml")) {
+                    if (clientlibContentStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the clientlib content.xml template");
+                    }
+
+                    try (InputStreamReader clientlibContentStreamReader = new InputStreamReader(clientlibContentStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader clientlibContentReader = new BufferedReader(clientlibContentStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = clientlibContentReader.readLine()) != null) {
+                                line = line.replace("{%CLIENTLIB_CATEGORY%}", componentConfig.getClientlibCategory());
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(contentFile, contentLines);
+                        }
+
+                    }
+                }
+            }
+
+            //empty clientlib impl file
+            File clientlibFile = new File(PathUtils.validatePath(clientlibTypePath, false, true) + componentConfig.getShortComponentName() + "." + clientlibType);
+            if(!clientlibFile.exists()) {
+                if(!clientlibFile.createNewFile()) {
+                    throw new ComponentCreationException("An occurred while creating the clientlib implementation file: " + clientlibFile.getName());
+                }
+            }
+        } catch(IOException ioe) {
+            throw new ComponentCreationException("An unexpected error occurred while creating " + clientlibType + " clientlib files", ioe);
+        }
+    }
+
+    private void writeLinesToFile(final File target, List<String> linesToWrite) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target)))) {
+            linesToWrite.forEach(contentLine -> {
+                try {
+                    writer.write(contentLine);
+                    writer.newLine();
+                }
+                catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            });
+        }
     }
 
 }

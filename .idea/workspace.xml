@@ -8,17 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ComponentCreationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/clientlib.content.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +127,7 @@
       <workItem from="1634742919207" duration="5170000" />
       <workItem from="1634825261740" duration="11000" />
       <workItem from="1634825306194" duration="184000" />
-      <workItem from="1634825539573" duration="20453000" />
+      <workItem from="1634825539573" duration="24931000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -185,7 +178,28 @@
       <option name="project" value="LOCAL" />
       <updated>1634915822550</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="working HTML files creation + some other improvements and refactored stuff">
+      <created>1634933850864</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1634933850864</updated>
+    </task>
+    <task id="LOCAL-00009" summary="forgot to set UI_APPS_JCR_ROOT session constant">
+      <created>1634975196936</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1634975196936</updated>
+    </task>
+    <task id="LOCAL-00010" summary="renamed UI_APPS_JCR_ROOT session constant to UI_APPS_ROOT">
+      <created>1634975267080</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1634975267081</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +215,9 @@
     <MESSAGE value="working file creation and notifications" />
     <MESSAGE value="some logging added" />
     <MESSAGE value="success notification when finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="success notification when finished" />
+    <MESSAGE value="working HTML files creation + some other improvements and refactored stuff" />
+    <MESSAGE value="forgot to set UI_APPS_JCR_ROOT session constant" />
+    <MESSAGE value="renamed UI_APPS_JCR_ROOT session constant to UI_APPS_ROOT" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed UI_APPS_JCR_ROOT session constant to UI_APPS_ROOT" />
   </component>
 </project>
