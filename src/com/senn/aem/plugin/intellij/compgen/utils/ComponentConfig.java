@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 public class ComponentConfig {
 
     private final String componentName;
+    private final String componentGroup;
     private final String packageName;
     private final String uiAppsRoot;
     private final String javaCodeRoot;
@@ -16,9 +17,10 @@ public class ComponentConfig {
     private final boolean makeCSS;
     private final boolean makeHtml;
 
-    public ComponentConfig(String componentName, String uiAppsRoot, String javaCodeRoot, String packageName, boolean makeDialogXml, boolean makeSlingModelCode,
+    public ComponentConfig(String componentName, String componentGroup, String uiAppsRoot, String javaCodeRoot, String packageName, boolean makeDialogXml, boolean makeSlingModelCode,
                            boolean makeEditConfigXml, boolean makeJS, boolean makeCSS, boolean makeHtml) {
         this.componentName = componentName;
+        this.componentGroup = componentGroup;
         this.javaCodeRoot = javaCodeRoot;
         this.packageName = packageName;
         this.uiAppsRoot = uiAppsRoot;
@@ -33,6 +35,8 @@ public class ComponentConfig {
     public String getFullComponentName() {
         return componentName;
     }
+
+    public String getComponentGroup() { return componentGroup; }
 
     public String getPackageName() {
         return packageName;
@@ -82,6 +86,13 @@ public class ComponentConfig {
     }
 
     public String getSlingModelName() {
+        return getCapitalizedComponentShortName();
+    }
+
+    public String getComponentTitle() {
+        return getCapitalizedComponentShortName();
+    }
+    private String getCapitalizedComponentShortName() {
         return StringUtils.capitalize(getShortComponentName());
     }
 

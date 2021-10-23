@@ -8,6 +8,7 @@ import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
  */
 public interface ComponentFilesCreator {
 
+    void createComponentXmlFiles() throws ComponentCreationException;
     void createHtmlFiles() throws ComponentCreationException;
     void createJavaScriptFiles() throws ComponentCreationException;
     void createCSSFiles() throws ComponentCreationException;

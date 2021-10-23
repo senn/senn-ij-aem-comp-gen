@@ -36,6 +36,7 @@ public class OnClickCreateAction extends DumbAwareAction {
         if(dialog.showAndGet()) {
             final ComponentConfig compConfig = new ComponentConfig(
                     dialog.getComponentName(),
+                    dialog.getComponentGroup(),
                     dialog.getUiAppsRoot(),
                     dialog.getJavaRoot(),
                     dialog.getPackageName(),
@@ -57,6 +58,7 @@ public class OnClickCreateAction extends DumbAwareAction {
             } catch(ComponentCreationException cce) {
                 //error notification
                 UIUtils.notifyError(cce.getMessage(), project);
+                cce.printStackTrace();
             }
             //update UI
             VirtualFileManagerEx.getInstance().refreshWithoutFileWatcher(false);
@@ -79,6 +81,9 @@ public class OnClickCreateAction extends DumbAwareAction {
 
     private void createComponentFiles(final ComponentConfig userOptions, final Project project) throws ComponentCreationException {
         final ComponentFilesCreator creator = ComponentFilesCreatorFactory.getInstance(project, userOptions);
+        //always
+        creator.createComponentXmlFiles();
+        //optional
         if (userOptions.makeDialogXml()) creator.createDialogXmlFiles();
         if (userOptions.makeEditConfigXml()) creator.createEditConfigXmlFiles();
         if (userOptions.makeHtml()) creator.createHtmlFiles();

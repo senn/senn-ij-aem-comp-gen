@@ -19,6 +19,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
     private JTextField txtPackage;
     private JTextField txtCodeJavaRoot;
     private JTextField txtUiAppsRoot;
+    private JTextField txtComponentGroup;
 
     public ComponentOptionsDialog(@Nullable Project project) {
         super(project, true);
@@ -38,6 +39,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
         txtUiAppsRoot.setText(IJSessionConstants.UI_APPS_ROOT);
         txtCodeJavaRoot.setText(IJSessionConstants.JAVA_ROOT);
         txtPackage.setText(IJSessionConstants.PACKAGE);
+        txtComponentGroup.setText(IJSessionConstants.COMPONENT_GROUP);
         chkHtml.setSelected(IJSessionConstants.SELECT_HTML);
         chkDialogXml.setSelected(IJSessionConstants.SELECT_DIALOG_XML);
         chkEditConfigXML.setSelected(IJSessionConstants.SELECT_EDIT_CONFIG_XML);
@@ -48,6 +50,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
         txtUiAppsRoot.setInputVerifier(new NotEmptyVerifier());
         txtCodeJavaRoot.setInputVerifier(new NotEmptyVerifier());
         txtComponentName.setInputVerifier(new NotEmptyVerifier());
+        txtComponentGroup.setInputVerifier(new NotEmptyVerifier());
     }
 
     @Override
@@ -72,6 +75,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
     public String getPackageName() {
         return txtPackage.getText();
     }
+    public String getComponentGroup() { return txtComponentGroup.getText(); }
 
     public boolean makeDialogXml() {
         return chkDialogXml.isSelected();

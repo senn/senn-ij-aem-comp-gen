@@ -42,6 +42,50 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     }
 
     @Override
+    public void createComponentXmlFiles() throws ComponentCreationException {
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("Started createComponentXmlFiles for " + componentConfig.getFullComponentName());
+
+        try {
+            File xmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
+            if (!xmlFile.exists()) {
+                try (InputStream xmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/component.content.xml")) {
+                    if (xmlStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the component content.xml template");
+                    }
+
+                    final File componentFileDir = new File(getFullComponentPath());
+                    componentFileDir.mkdirs();
+                    if (!componentFileDir.exists() || !componentFileDir.canWrite()) {
+                        throw new ComponentCreationException("An error occurred while creating the component folder path: " + getFullComponentPath());
+                    }
+
+                    final File compXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
+
+                    try (InputStreamReader xmlStreamReader = new InputStreamReader(xmlStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedReader = new BufferedReader(xmlStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedReader.readLine()) != null) {
+                                line = line.replace("{%COMP_TITLE%}", componentConfig.getComponentTitle())
+                                        .replace("{%COMP_GROUP%}", componentConfig.getComponentGroup());
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(compXmlFile, contentLines);
+                        }
+
+                    }
+                }
+            }
+        } catch(IOException ioe) {
+            throw new ComponentCreationException("An unexpected error occurred while creating component XML file", ioe);
+        }
+
+        LOGGER.info("Finished createComponentXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+    }
+
+    @Override
     public void createHtmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createHtmlFiles for " + componentConfig.getFullComponentName());

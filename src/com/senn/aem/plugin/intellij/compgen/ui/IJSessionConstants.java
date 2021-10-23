@@ -9,6 +9,7 @@ public class IJSessionConstants {
     public static String JAVA_ROOT = "core/src/main/java";
     public static String UI_APPS_ROOT = "ui.apps/src/main/content/jcr_root";
     public static String PACKAGE = "";
+    public static String COMPONENT_GROUP = "";
 
     public static boolean SELECT_HTML = true;
     public static boolean SELECT_DIALOG_XML = true;

@@ -8,10 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/clientlib.content.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/component.content.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/dialogconfig.content.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fileTemplates/internal/senn_aem.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/TemplatesComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/IJSessionConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/IJSessionConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +72,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="426" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -77,6 +84,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspaces\intellij\senn\senn-ij-aem-comp-gen\resources" />
+      <recent name="C:\workspaces\intellij\senn\senn-ij-aem-comp-gen\resources\fileTemplates\internal" />
       <recent name="C:\workspaces\intellij\senn\senn-ij-aem-comp-gen\resources\META-INF" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
