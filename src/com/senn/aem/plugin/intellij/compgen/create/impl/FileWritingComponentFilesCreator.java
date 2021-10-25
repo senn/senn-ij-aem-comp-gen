@@ -60,8 +60,6 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         throw new ComponentCreationException("An error occurred while creating the component folder path: " + getFullComponentPath());
                     }
 
-                    final File compXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
-
                     try (InputStreamReader xmlStreamReader = new InputStreamReader(xmlStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedReader = new BufferedReader(xmlStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -72,7 +70,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                 contentLines.add(line);
                             }
 
-                            writeLinesToFile(compXmlFile, contentLines);
+                            writeLinesToFile(xmlFile, contentLines);
                         }
 
                     }
@@ -167,7 +165,40 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     public void createDialogXmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createDialogXmlFiles for " + componentConfig.getFullComponentName());
-        //TODO: impl
+
+        try {
+            File dialogXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog/.content.xml");
+            if (!dialogXmlFile.exists()) {
+                try (InputStream dialogXmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/dialogconfig.content.xml")) {
+                    if (dialogXmlStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the dialog content.xml template");
+                    }
+
+                    final File dialogFileDir = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog");
+                    dialogFileDir.mkdirs();
+                    if (!dialogFileDir.exists() || !dialogFileDir.canWrite()) {
+                        throw new ComponentCreationException("An error occurred while creating the dialog folder path: " + getFullComponentPath());
+                    }
+
+                    try (InputStreamReader dialogXmlStreamReader = new InputStreamReader(dialogXmlStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedDialogReader = new BufferedReader(dialogXmlStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedDialogReader.readLine()) != null) {
+                                line = line.replace("{%COMP_TITLE%}", componentConfig.getComponentTitle());
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(dialogXmlFile, contentLines);
+                        }
+
+                    }
+                }
+            }
+        } catch(IOException ioe) {
+            throw new ComponentCreationException("An unexpected error occurred while creating component XML file", ioe);
+        }
+
         LOGGER.info("Finished createDialogXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
