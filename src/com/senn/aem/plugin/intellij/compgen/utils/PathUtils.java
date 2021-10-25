@@ -38,4 +38,8 @@ public final class PathUtils {
         return TEMPLATE_FOLDER_PATH + templateName;
     }
 
+    public static String getJavaPackageAsFolderPath(String packageName) {
+        return validatePath(packageName.replace(".", "/"), false, true);
+    }
+
 }

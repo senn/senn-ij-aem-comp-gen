@@ -7,10 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="working component xml">
-      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/editconfig.xml" afterDir="false" />
+    <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/impl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/inter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/PathUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/PathUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +135,7 @@
       <workItem from="1634825306194" duration="184000" />
       <workItem from="1634825539573" duration="24931000" />
       <workItem from="1635150992361" duration="74000" />
-      <workItem from="1635151215421" duration="1757000" />
+      <workItem from="1635151215421" duration="5130000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -238,7 +242,28 @@
       <option name="project" value="LOCAL" />
       <updated>1635149274272</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="working editconfig">
+      <created>1635156052953</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1635156052953</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added some comment to dialogconfig.content.xml">
+      <created>1635156101235</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1635156101235</updated>
+    </task>
+    <task id="LOCAL-00018" summary="removed unused variable">
+      <created>1635156843774</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1635156843774</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +287,9 @@
     <MESSAGE value="added componentGroup to toString" />
     <MESSAGE value="working dialog config xml" />
     <MESSAGE value="moved template paths to PathUtils" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved template paths to PathUtils" />
+    <MESSAGE value="working editconfig" />
+    <MESSAGE value="added some comment to dialogconfig.content.xml" />
+    <MESSAGE value="removed unused variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unused variable" />
   </component>
 </project>

@@ -22,7 +22,6 @@ public class ComponentConfig {
         this.componentName = componentName;
         this.componentGroup = componentGroup;
         this.javaCodeRoot = javaCodeRoot;
-        this.packageName = packageName;
         this.uiAppsRoot = uiAppsRoot;
         this.makeDialogXml = makeDialogXml;
         this.makeSlingModelCode = makeSlingModelCode;
@@ -30,6 +29,11 @@ public class ComponentConfig {
         this.makeJS = makeJS;
         this.makeCSS = makeCSS;
         this.makeHtml = makeHtml;
+
+        if(packageName.endsWith(".")) {
+            packageName = packageName.substring(0, packageName.length() - 1);
+        }
+        this.packageName = packageName;
     }
 
     public String getFullComponentName() {

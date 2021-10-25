@@ -191,12 +191,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
                             writeLinesToFile(dialogXmlFile, contentLines);
                         }
-
                     }
                 }
             }
         } catch(IOException ioe) {
-            throw new ComponentCreationException("An unexpected error occurred while creating component XML file", ioe);
+            throw new ComponentCreationException("An unexpected error occurred while creating dialog XML file", ioe);
         }
 
         LOGGER.info("Finished createDialogXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
@@ -231,12 +230,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
                             writeLinesToFile(editCfgXmlFile, contentLines);
                         }
-
                     }
                 }
             }
         } catch(IOException ioe) {
-            throw new ComponentCreationException("An unexpected error occurred while creating component XML file", ioe);
+            throw new ComponentCreationException("An unexpected error occurred while creating edit config XML file", ioe);
         }
 
         LOGGER.info("Finished createEditConfigXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
@@ -247,13 +245,92 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createSlingModelCodeFiles for " + componentConfig.getFullComponentName());
 
-        //make package folders
+        try {
+            //make package folders
+            final String packageFolderPath = PathUtils.validatePath(project.getBasePath(), false, true)
+                    + PathUtils.validatePath(componentConfig.getJavaCodeRoot(), false, true)
+                    + PathUtils.getJavaPackageAsFolderPath(componentConfig.getPackageName());
+            final File packageFolders = new File(packageFolderPath);
+            final File packageImplFolder = new File(packageFolderPath + "impl");
+            packageFolders.mkdirs();
+            packageImplFolder.mkdirs();
 
-        //make package-info
+            //make package-info
+            final File packageInfoFile = new File(packageFolderPath + "package-info.java");
+            if (!packageInfoFile.exists()) {
+                try (InputStream packageInfoStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("package-info.java"))) {
+                    if (packageInfoStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the package-info.java template");
+                    }
 
-        //make inter
+                    try (InputStreamReader packageInfoStreamReader = new InputStreamReader(packageInfoStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedPackageInfoStreamReader = new BufferedReader(packageInfoStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedPackageInfoStreamReader.readLine()) != null) {
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName());
+                                contentLines.add(line);
+                            }
 
-        // make impl
+                            writeLinesToFile(packageInfoFile, contentLines);
+                        }
+                    }
+                }
+            }
+
+            //make inter
+            final File interFile = new File(packageFolderPath + componentConfig.getSlingModelName() + ".java");
+            if (!interFile.exists()) {
+                try (InputStream interStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("inter.java"))) {
+                    if (interStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the Sling model interface template");
+                    }
+
+                    try (InputStreamReader interStreamReader = new InputStreamReader(interStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedInterStreamReader = new BufferedReader(interStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedInterStreamReader.readLine()) != null) {
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName())
+                                        .replace("{%COMP_NAME_SHORT%}", componentConfig.getSlingModelName())
+                                        .replace("{%COMP_NAME_FULL%}", componentConfig.getFullComponentName());
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(interFile, contentLines);
+                        }
+                    }
+                }
+            }
+
+            //make impl
+            final File implFile = new File(packageFolderPath + "impl/" + componentConfig.getSlingModelName() + "Impl.java");
+            if (!implFile.exists()) {
+                try (InputStream implStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("impl.java"))) {
+                    if (implStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the Sling model implementation template");
+                    }
+
+                    try (InputStreamReader implStreamReader = new InputStreamReader(implStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedImplStreamReader = new BufferedReader(implStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedImplStreamReader.readLine()) != null) {
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName())
+                                        .replace("{%COMP_NAME_SHORT%}", componentConfig.getSlingModelName())
+                                        .replace("{%SLING_MODEL_NAME_FULL%}", componentConfig.getFullyQualifiedSlingModelName());
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(implFile, contentLines);
+                        }
+                    }
+                }
+            }
+
+        } catch(IOException ioe) {
+            throw new ComponentCreationException("An unexpected error occurred while creating Sling model files", ioe);
+        }
 
         LOGGER.info("Finished createSlingModelCodeFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
@@ -302,7 +379,6 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
                             writeLinesToFile(contentFile, contentLines);
                         }
-
                     }
                 }
             }
