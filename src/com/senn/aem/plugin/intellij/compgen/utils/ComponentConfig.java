@@ -108,6 +108,7 @@ public class ComponentConfig {
     public String toString() {
         return "ComponentOptions{" +
                 "componentName='" + componentName + '\'' +
+                ", componentGroup='" + componentGroup + '\'' +
                 ", packageName='" + packageName + '\'' +
                 ", uiAppsRoot='" + uiAppsRoot + '\'' +
                 ", javaCodeRoot='" + javaCodeRoot + '\'' +
