@@ -3,7 +3,7 @@ package com.senn.aem.plugin.intellij.compgen.create.impl;
 import com.intellij.openapi.project.Project;
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
-import com.senn.aem.plugin.intellij.compgen.utils.ComponentConfig;
+import com.senn.aem.plugin.intellij.compgen.ComponentConfig;
 import com.senn.aem.plugin.intellij.compgen.utils.FocusPriorityFile;
 import com.senn.aem.plugin.intellij.compgen.utils.PathUtils;
 import java.io.BufferedReader;

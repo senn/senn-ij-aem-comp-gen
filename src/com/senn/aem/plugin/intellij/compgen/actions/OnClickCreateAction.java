@@ -14,7 +14,7 @@ import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
 import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
 import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
-import com.senn.aem.plugin.intellij.compgen.utils.ComponentConfig;
+import com.senn.aem.plugin.intellij.compgen.ComponentConfig;
 import com.senn.aem.plugin.intellij.compgen.utils.FocusPriorityFile;
 import java.io.File;
 import java.util.ArrayList;

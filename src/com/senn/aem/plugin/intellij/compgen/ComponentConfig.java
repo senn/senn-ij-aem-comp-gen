@@ -1,6 +1,5 @@
-package com.senn.aem.plugin.intellij.compgen.utils;
+package com.senn.aem.plugin.intellij.compgen;
 
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang.StringUtils;
 
 public class ComponentConfig {
