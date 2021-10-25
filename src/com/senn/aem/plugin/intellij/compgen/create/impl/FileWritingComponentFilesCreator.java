@@ -246,7 +246,15 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     public void createSlingModelCodeFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createSlingModelCodeFiles for " + componentConfig.getFullComponentName());
-        //TODO: impl
+
+        //make package folders
+
+        //make package-info
+
+        //make inter
+
+        // make impl
+
         LOGGER.info("Finished createSlingModelCodeFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
@@ -259,8 +267,6 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     private void createClientlib(String clientlibType) throws ComponentCreationException {
         clientlibType = clientlibType.toLowerCase();
 
-        final String fullComponentPath = getFullComponentPath();
-        //make directories
         final String clientlibPath = getFullComponentPath() + "clientlib";
         final String clientlibTypePath = PathUtils.validatePath(clientlibPath, false, true) + clientlibType;
         File clientlibDir = new File(clientlibTypePath);
