@@ -17,6 +17,7 @@
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             jcr:title="Properties"
                             margin="{Boolean}true">
+                        <!-- place dialog fields here -->
                     </properties>
                 </items>
             </tabs>
