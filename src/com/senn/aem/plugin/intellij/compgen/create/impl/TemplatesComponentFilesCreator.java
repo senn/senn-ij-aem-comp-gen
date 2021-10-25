@@ -2,41 +2,43 @@ package com.senn.aem.plugin.intellij.compgen.create.impl;
 
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
+import java.io.File;
+import java.util.List;
 
 public class TemplatesComponentFilesCreator implements ComponentFilesCreator {
 
     @Override
-    public void createComponentXmlFiles() throws ComponentCreationException {
+    public List<File> createComponentXmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createHtmlFiles() throws ComponentCreationException {
+    public List<File> createHtmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createJavaScriptFiles() throws ComponentCreationException {
+    public List<File> createJavaScriptFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createCSSFiles() throws ComponentCreationException {
+    public List<File> createCSSFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createDialogXmlFiles() throws ComponentCreationException {
+    public List<File> createDialogXmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createEditConfigXmlFiles() throws ComponentCreationException {
+    public List<File> createEditConfigXmlFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public void createSlingModelCodeFiles() throws ComponentCreationException {
+    public List<File> createSlingModelCodeFiles() throws ComponentCreationException {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 }
