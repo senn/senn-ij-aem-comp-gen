@@ -34,6 +34,7 @@ public class OnClickCreateAction extends DumbAwareAction {
         dialog.setCrossClosesWindow(true);
         dialog.setOKActionEnabled(true);
         if(dialog.showAndGet()) {
+            LOGGER.debug("Clicked OK in dialog");
             final ComponentConfig compConfig = new ComponentConfig(
                     dialog.getComponentName(),
                     dialog.getComponentGroup(),
@@ -51,7 +52,10 @@ public class OnClickCreateAction extends DumbAwareAction {
             updateSessionConstants(compConfig);
 
             try {
+                long startTime = System.currentTimeMillis();
+                LOGGER.debug("Starting creation of component files...");
                 createComponentFiles(compConfig, project);
+                LOGGER.debug("Finished creation of component files! Took " + (System.currentTimeMillis() - startTime)  + "ms");
 
                 //success notification
                 UIUtils.notifyInfo("Component files created for '" + compConfig.getFullComponentName() + "'", project);
@@ -61,6 +65,7 @@ public class OnClickCreateAction extends DumbAwareAction {
                 cce.printStackTrace();
             }
             //update UI
+            LOGGER.debug("Refreshing UI to reflect changes and show new files");
             VirtualFileManagerEx.getInstance().refreshWithoutFileWatcher(false);
         }
     }
