@@ -206,7 +206,39 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     public void createEditConfigXmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createEditConfigXmlFiles for " + componentConfig.getFullComponentName());
-        //TODO: impl
+
+        try {
+            File editCfgXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_editConfig.xml");
+            if (!editCfgXmlFile.exists()) {
+                try (InputStream editCfgXmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("editconfig.xml"))) {
+                    if (editCfgXmlStream == null) {
+                        throw new ComponentCreationException("An error occurred while reading the editconfig.xml template");
+                    }
+
+                    final File editCfgFileDir = new File(PathUtils.validatePath(getFullComponentPath(), false, true));
+                    editCfgFileDir.mkdirs();
+                    if (!editCfgFileDir.exists() || !editCfgFileDir.canWrite()) {
+                        throw new ComponentCreationException("An error occurred while creating the dialog folder path: " + getFullComponentPath());
+                    }
+
+                    try (InputStreamReader editCfgXmlStreamReader = new InputStreamReader(editCfgXmlStream, StandardCharsets.UTF_8)) {
+                        try (BufferedReader bufferedEditCfgReader = new BufferedReader(editCfgXmlStreamReader)) {
+                            List<String> contentLines = new ArrayList<>();
+                            String line;
+                            while ((line = bufferedEditCfgReader.readLine()) != null) {
+                                contentLines.add(line);
+                            }
+
+                            writeLinesToFile(editCfgXmlFile, contentLines);
+                        }
+
+                    }
+                }
+            }
+        } catch(IOException ioe) {
+            throw new ComponentCreationException("An unexpected error occurred while creating component XML file", ioe);
+        }
+
         LOGGER.info("Finished createEditConfigXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 

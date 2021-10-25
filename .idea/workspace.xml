@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="working component xml">
+      <change afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/editconfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fileTemplates/internal/dialogconfig.content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fileTemplates/internal/dialogconfig.content.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/PathUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/PathUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="1zUanfEmRe6Bdp5a5YT6ZLYhcom" />
   <component name="ProjectLevelVcsManager">
@@ -131,6 +130,8 @@
       <workItem from="1634825261740" duration="11000" />
       <workItem from="1634825306194" duration="184000" />
       <workItem from="1634825539573" duration="24931000" />
+      <workItem from="1635150992361" duration="74000" />
+      <workItem from="1635151215421" duration="1757000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -223,7 +224,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635143149889</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="working dialog config xml">
+      <created>1635149132598</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1635149132598</updated>
+    </task>
+    <task id="LOCAL-00015" summary="moved template paths to PathUtils">
+      <created>1635149274272</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1635149274272</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +260,8 @@
     <MESSAGE value="working component xml" />
     <MESSAGE value="fixed issue with empty package" />
     <MESSAGE value="added componentGroup to toString" />
-    <option name="LAST_COMMIT_MESSAGE" value="added componentGroup to toString" />
+    <MESSAGE value="working dialog config xml" />
+    <MESSAGE value="moved template paths to PathUtils" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved template paths to PathUtils" />
   </component>
 </project>
