@@ -1,6 +1,8 @@
 package com.senn.aem.plugin.intellij.compgen.create;
 
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
+import java.io.File;
+import java.util.List;
 
 /**
  * Contract for the class that creates the AEM component files
@@ -8,11 +10,11 @@ import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
  */
 public interface ComponentFilesCreator {
 
-    void createComponentXmlFiles() throws ComponentCreationException;
-    void createHtmlFiles() throws ComponentCreationException;
-    void createJavaScriptFiles() throws ComponentCreationException;
-    void createCSSFiles() throws ComponentCreationException;
-    void createDialogXmlFiles() throws ComponentCreationException;
-    void createEditConfigXmlFiles() throws ComponentCreationException;
-    void createSlingModelCodeFiles() throws ComponentCreationException;
+    List<File> createComponentXmlFiles() throws ComponentCreationException;
+    List<File> createHtmlFiles() throws ComponentCreationException;
+    List<File> createJavaScriptFiles() throws ComponentCreationException;
+    List<File> createCSSFiles() throws ComponentCreationException;
+    List<File> createDialogXmlFiles() throws ComponentCreationException;
+    List<File> createEditConfigXmlFiles() throws ComponentCreationException;
+    List<File> createSlingModelCodeFiles() throws ComponentCreationException;
 }

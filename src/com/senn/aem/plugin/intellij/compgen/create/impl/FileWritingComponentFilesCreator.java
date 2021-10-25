@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project;
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 import com.senn.aem.plugin.intellij.compgen.utils.ComponentConfig;
+import com.senn.aem.plugin.intellij.compgen.utils.FocusPriorityFile;
 import com.senn.aem.plugin.intellij.compgen.utils.PathUtils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,12 +43,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     }
 
     @Override
-    public void createComponentXmlFiles() throws ComponentCreationException {
+    public List<File> createComponentXmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createComponentXmlFiles for " + componentConfig.getFullComponentName());
 
+        final List<File> newlyCreatedFiles = new ArrayList<>();
         try {
-            File xmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
+            File xmlFile = new FocusPriorityFile(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml", 1);
             if (!xmlFile.exists()) {
                 LOGGER.debug("Component XML file does not exist yet... Continuing with creation");
                 try (InputStream xmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("component.content.xml"))) {
@@ -77,6 +79,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
 
                     }
+                    newlyCreatedFiles.add(xmlFile);
                 }
             }
         } catch(IOException ioe) {
@@ -84,15 +87,18 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         }
 
         LOGGER.info("Finished createComponentXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createHtmlFiles() throws ComponentCreationException {
+    public List<File> createHtmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createHtmlFiles for " + componentConfig.getFullComponentName());
 
+        final List<File> newlyCreatedFiles = new ArrayList<>();
+
         final String fullComponentPath = getFullComponentPath();
-        final File htmlFile = new File(fullComponentPath + componentConfig.getShortComponentName() + ".html");
+        final File htmlFile = new FocusPriorityFile(fullComponentPath + componentConfig.getShortComponentName() + ".html", 2);
         if(htmlFile.exists()) {
             throw new ComponentCreationException("Component HTML file already exists!");
         }
@@ -145,35 +151,41 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                     writeLinesToFile(htmlFile, htmlContentLines);
                 }
             }
+            newlyCreatedFiles.add(htmlFile);
         } catch(IOException ioe) {
             throw new ComponentCreationException("An unexpected error occurred while creating HTML component files", ioe);
         }
         LOGGER.info("Finished createHtmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createJavaScriptFiles() throws ComponentCreationException {
+    public List<File> createJavaScriptFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createJavaScriptFiles for " + componentConfig.getFullComponentName());
-        createClientlib(Clientlib.JS);
+        final List<File> newlyCreatedFiles = createClientlib(Clientlib.JS);
         LOGGER.info("Finished createJavaScriptFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createCSSFiles() throws ComponentCreationException {
+    public List<File> createCSSFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createCSSFiles for " + componentConfig.getFullComponentName());
-        createClientlib(Clientlib.CSS);
+        final List<File> newlyCreatedFiles = createClientlib(Clientlib.CSS);
         LOGGER.info("Finished createCSSFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createDialogXmlFiles() throws ComponentCreationException {
+    public List<File> createDialogXmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createDialogXmlFiles for " + componentConfig.getFullComponentName());
 
+        final List<File> newlyCreatedFiles = new ArrayList<>();
+
         try {
-            File dialogXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog/.content.xml");
+            File dialogXmlFile = new FocusPriorityFile(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog/.content.xml", 3);
             if (!dialogXmlFile.exists()) {
                 LOGGER.debug("Dialog XML file does not exist yet... Continuing with creation");
                 try (InputStream dialogXmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("dialogconfig.content.xml"))) {
@@ -203,18 +215,22 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(dialogXmlFile);
             }
         } catch(IOException ioe) {
             throw new ComponentCreationException("An unexpected error occurred while creating dialog XML file", ioe);
         }
 
         LOGGER.info("Finished createDialogXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createEditConfigXmlFiles() throws ComponentCreationException {
+    public List<File> createEditConfigXmlFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createEditConfigXmlFiles for " + componentConfig.getFullComponentName());
+
+        final List<File> newlyCreatedFiles = new ArrayList<>();
 
         try {
             File editCfgXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_editConfig.xml");
@@ -246,18 +262,22 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(editCfgXmlFile);
             }
         } catch(IOException ioe) {
             throw new ComponentCreationException("An unexpected error occurred while creating edit config XML file", ioe);
         }
 
         LOGGER.info("Finished createEditConfigXmlFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     @Override
-    public void createSlingModelCodeFiles() throws ComponentCreationException {
+    public List<File> createSlingModelCodeFiles() throws ComponentCreationException {
         long startTime = System.currentTimeMillis();
         LOGGER.info("Started createSlingModelCodeFiles for " + componentConfig.getFullComponentName());
+
+        final List<File> newlyCreatedFiles = new ArrayList<>();
 
         try {
             //make package folders
@@ -295,10 +315,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(packageInfoFile);
             }
 
             //make inter
-            final File interFile = new File(packageFolderPath + componentConfig.getSlingModelName() + ".java");
+            final File interFile = new FocusPriorityFile(packageFolderPath + componentConfig.getSlingModelName() + ".java", 5);
             if (!interFile.exists()) {
                 LOGGER.debug("Interface class file does not exist yet... Continuing with creation");
                 try (InputStream interStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("inter.java"))) {
@@ -323,10 +344,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(interFile);
             }
 
             //make impl
-            final File implFile = new File(packageFolderPath + "impl/" + componentConfig.getSlingModelName() + "Impl.java");
+            final File implFile = new FocusPriorityFile(packageFolderPath + "impl/" + componentConfig.getSlingModelName() + "Impl.java", 4);
             if (!implFile.exists()) {
                 LOGGER.debug("Impl class file does not exist yet... Continuing with creation");
                 try (InputStream implStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("impl.java"))) {
@@ -351,6 +373,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(implFile);
             }
 
         } catch(IOException ioe) {
@@ -358,6 +381,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         }
 
         LOGGER.info("Finished createSlingModelCodeFiles for " + componentConfig.getFullComponentName() + " in " + (System.currentTimeMillis() - startTime) + "ms");
+        return newlyCreatedFiles;
     }
 
     private String getFullComponentPath() {
@@ -366,8 +390,10 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                 PathUtils.validatePath(componentConfig.getFullComponentName(), false, true);
     }
 
-    private void createClientlib(String clientlibType) throws ComponentCreationException {
+    private List<File> createClientlib(String clientlibType) throws ComponentCreationException {
         clientlibType = clientlibType.toLowerCase();
+
+        final List<File> newlyCreatedFiles = new ArrayList<>();
 
         final String clientlibPath = getFullComponentPath() + "clientlib";
         final String clientlibTypePath = PathUtils.validatePath(clientlibPath, false, true) + clientlibType;
@@ -379,11 +405,14 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             //clientlib overview file (js.txt / css.txt)
             final File overviewFile = new File(PathUtils.validatePath(clientlibPath, false, true) + clientlibType + ".txt");
-            try (BufferedWriter overviewFileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(overviewFile)))) {
-                overviewFileWriter.write("#base=" + clientlibType);
-                overviewFileWriter.newLine();
-                overviewFileWriter.newLine();
-                overviewFileWriter.write( componentConfig.getShortComponentName() + "." + clientlibType);
+            if(!overviewFile.exists()) {
+                try (BufferedWriter overviewFileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(overviewFile)))) {
+                    overviewFileWriter.write("#base=" + clientlibType);
+                    overviewFileWriter.newLine();
+                    overviewFileWriter.newLine();
+                    overviewFileWriter.write(componentConfig.getShortComponentName() + "." + clientlibType);
+                }
+                newlyCreatedFiles.add(overviewFile);
             }
 
             //clientlib folder .content.xml file
@@ -410,6 +439,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                         }
                     }
                 }
+                newlyCreatedFiles.add(contentFile);
             }
 
             //empty clientlib impl file
@@ -418,10 +448,12 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                 if(!clientlibFile.createNewFile()) {
                     throw new ComponentCreationException("An occurred while creating the clientlib implementation file: " + clientlibFile.getName());
                 }
+                newlyCreatedFiles.add(clientlibFile);
             }
         } catch(IOException ioe) {
             throw new ComponentCreationException("An unexpected error occurred while creating " + clientlibType + " clientlib files", ioe);
         }
+        return newlyCreatedFiles;
     }
 
     private void writeLinesToFile(final File target, List<String> linesToWrite) throws IOException {
@@ -439,5 +471,4 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         }
         LOGGER.debug("Finished writing to file " + target.getAbsolutePath());
     }
-
 }

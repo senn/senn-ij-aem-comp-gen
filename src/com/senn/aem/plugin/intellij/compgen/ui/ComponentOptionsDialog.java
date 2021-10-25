@@ -20,6 +20,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
     private JTextField txtCodeJavaRoot;
     private JTextField txtUiAppsRoot;
     private JTextField txtComponentGroup;
+    private JCheckBox chkOpenFiles;
 
     public ComponentOptionsDialog(@Nullable Project project) {
         super(project, true);
@@ -46,6 +47,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
         chkJavaScript.setSelected(IJSessionConstants.SELECT_JS);
         chkCSS.setSelected(IJSessionConstants.SELECT_CSS);
         chkCode.setSelected(IJSessionConstants.SELECT_SLING_MODEL);
+        chkOpenFiles.setSelected(IJSessionConstants.OPEN_AFTER_CREATION);
 
         txtUiAppsRoot.setInputVerifier(new NotEmptyVerifier());
         txtCodeJavaRoot.setInputVerifier(new NotEmptyVerifier());
@@ -100,6 +102,8 @@ public class ComponentOptionsDialog extends DialogWrapper {
     public boolean makeHtml()  {
         return chkHtml.isSelected();
     }
+
+    public boolean openAfterCreation() { return chkOpenFiles.isSelected(); }
 
     private static class NotEmptyVerifier extends InputVerifier {
         @Override
