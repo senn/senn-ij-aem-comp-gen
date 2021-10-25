@@ -49,17 +49,20 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             File xmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
             if (!xmlFile.exists()) {
+                LOGGER.debug("Component XML file does not exist yet... Continuing with creation");
                 try (InputStream xmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("component.content.xml"))) {
                     if (xmlStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the component content.xml template");
                     }
 
                     final File componentFileDir = new File(getFullComponentPath());
+                    LOGGER.debug("Making directory path: " + componentFileDir.getAbsolutePath());
                     componentFileDir.mkdirs();
                     if (!componentFileDir.exists() || !componentFileDir.canWrite()) {
                         throw new ComponentCreationException("An error occurred while creating the component folder path: " + getFullComponentPath());
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader xmlStreamReader = new InputStreamReader(xmlStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedReader = new BufferedReader(xmlStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -69,7 +72,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                         .replace("{%COMP_GROUP%}", componentConfig.getComponentGroup());
                                 contentLines.add(line);
                             }
-
+                            LOGGER.debug("Finished read and replace");
                             writeLinesToFile(xmlFile, contentLines);
                         }
 
@@ -99,6 +102,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                 throw new ComponentCreationException("An error occurred while reading the HTML template");
             }
 
+            LOGGER.debug("Reading template and replacing placeholders with values...");
             try(InputStreamReader htmlStreamReader = new InputStreamReader(htmlStream, StandardCharsets.UTF_8)) {
                 try(BufferedReader htmlReader = new BufferedReader(htmlStreamReader)) {
                     List<String> htmlContentLines = new ArrayList<>();
@@ -129,8 +133,10 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                            htmlContentLines.add(line);
                        }
                     }
+                    LOGGER.debug("Finished read and replace");
 
                     final File componentFileDir = new File(fullComponentPath);
+                    LOGGER.debug("Making directory path: " + componentFileDir.getAbsolutePath());
                     componentFileDir.mkdirs();
                     if (!componentFileDir.exists() || !componentFileDir.canWrite()) {
                         throw new ComponentCreationException("An error occurred while creating the component folder path: " + fullComponentPath);
@@ -169,17 +175,20 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             File dialogXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog/.content.xml");
             if (!dialogXmlFile.exists()) {
+                LOGGER.debug("Dialog XML file does not exist yet... Continuing with creation");
                 try (InputStream dialogXmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("dialogconfig.content.xml"))) {
                     if (dialogXmlStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the dialog content.xml template");
                     }
 
                     final File dialogFileDir = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog");
+                    LOGGER.debug("Making directory path: " + dialogFileDir.getAbsolutePath());
                     dialogFileDir.mkdirs();
                     if (!dialogFileDir.exists() || !dialogFileDir.canWrite()) {
                         throw new ComponentCreationException("An error occurred while creating the dialog folder path: " + getFullComponentPath());
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader dialogXmlStreamReader = new InputStreamReader(dialogXmlStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedDialogReader = new BufferedReader(dialogXmlStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -188,6 +197,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                 line = line.replace("{%COMP_TITLE%}", componentConfig.getComponentTitle());
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(dialogXmlFile, contentLines);
                         }
@@ -209,17 +219,20 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             File editCfgXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_editConfig.xml");
             if (!editCfgXmlFile.exists()) {
+                LOGGER.debug("Edit config XML file does not exist yet... Continuing with creation");
                 try (InputStream editCfgXmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("editconfig.xml"))) {
                     if (editCfgXmlStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the editconfig.xml template");
                     }
 
                     final File editCfgFileDir = new File(PathUtils.validatePath(getFullComponentPath(), false, true));
+                    LOGGER.debug("Making directory path: " + editCfgFileDir.getAbsolutePath());
                     editCfgFileDir.mkdirs();
                     if (!editCfgFileDir.exists() || !editCfgFileDir.canWrite()) {
                         throw new ComponentCreationException("An error occurred while creating the dialog folder path: " + getFullComponentPath());
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader editCfgXmlStreamReader = new InputStreamReader(editCfgXmlStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedEditCfgReader = new BufferedReader(editCfgXmlStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -227,6 +240,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                             while ((line = bufferedEditCfgReader.readLine()) != null) {
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(editCfgXmlFile, contentLines);
                         }
@@ -252,17 +266,21 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                     + PathUtils.getJavaPackageAsFolderPath(componentConfig.getPackageName());
             final File packageFolders = new File(packageFolderPath);
             final File packageImplFolder = new File(packageFolderPath + "impl");
+            LOGGER.debug("Making directory path: " + packageFolders.getAbsolutePath());
             packageFolders.mkdirs();
+            LOGGER.debug("Making directory path: " + packageImplFolder.getAbsolutePath());
             packageImplFolder.mkdirs();
 
             //make package-info
             final File packageInfoFile = new File(packageFolderPath + "package-info.java");
             if (!packageInfoFile.exists()) {
+                LOGGER.debug("Package info file does not exist yet... Continuing with creation");
                 try (InputStream packageInfoStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("package-info.java"))) {
                     if (packageInfoStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the package-info.java template");
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader packageInfoStreamReader = new InputStreamReader(packageInfoStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedPackageInfoStreamReader = new BufferedReader(packageInfoStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -271,6 +289,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                 line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName());
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(packageInfoFile, contentLines);
                         }
@@ -281,11 +300,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
             //make inter
             final File interFile = new File(packageFolderPath + componentConfig.getSlingModelName() + ".java");
             if (!interFile.exists()) {
+                LOGGER.debug("Interface class file does not exist yet... Continuing with creation");
                 try (InputStream interStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("inter.java"))) {
                     if (interStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the Sling model interface template");
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader interStreamReader = new InputStreamReader(interStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedInterStreamReader = new BufferedReader(interStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -296,6 +317,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                         .replace("{%COMP_NAME_FULL%}", componentConfig.getFullComponentName());
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(interFile, contentLines);
                         }
@@ -306,11 +328,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
             //make impl
             final File implFile = new File(packageFolderPath + "impl/" + componentConfig.getSlingModelName() + "Impl.java");
             if (!implFile.exists()) {
+                LOGGER.debug("Impl class file does not exist yet... Continuing with creation");
                 try (InputStream implStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("impl.java"))) {
                     if (implStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the Sling model implementation template");
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader implStreamReader = new InputStreamReader(implStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedImplStreamReader = new BufferedReader(implStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -321,6 +345,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                         .replace("{%SLING_MODEL_NAME_FULL%}", componentConfig.getFullyQualifiedSlingModelName());
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(implFile, contentLines);
                         }
@@ -347,6 +372,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         final String clientlibPath = getFullComponentPath() + "clientlib";
         final String clientlibTypePath = PathUtils.validatePath(clientlibPath, false, true) + clientlibType;
         File clientlibDir = new File(clientlibTypePath);
+        LOGGER.debug("Making directory path: " + clientlibDir.getAbsolutePath());
         clientlibDir.mkdirs();
 
         //make actual files
@@ -363,11 +389,13 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
             //clientlib folder .content.xml file
             File contentFile = new File(PathUtils.validatePath(clientlibPath, false, true) + ".content.xml");
             if(!contentFile.exists()) {
+                LOGGER.debug("Clientlib content XML file does not exist yet... Continuing with creation");
                 try (InputStream clientlibContentStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("clientlib.content.xml"))) {
                     if (clientlibContentStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the clientlib content.xml template");
                     }
 
+                    LOGGER.debug("Reading template and replacing placeholders with values...");
                     try (InputStreamReader clientlibContentStreamReader = new InputStreamReader(clientlibContentStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader clientlibContentReader = new BufferedReader(clientlibContentStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
@@ -376,6 +404,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                                 line = line.replace("{%CLIENTLIB_CATEGORY%}", componentConfig.getClientlibCategory());
                                 contentLines.add(line);
                             }
+                            LOGGER.debug("Finished read and replace");
 
                             writeLinesToFile(contentFile, contentLines);
                         }
@@ -396,6 +425,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
     }
 
     private void writeLinesToFile(final File target, List<String> linesToWrite) throws IOException {
+        LOGGER.debug("Writing " + linesToWrite.size() + " lines to file " + target.getAbsolutePath());
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target)))) {
             linesToWrite.forEach(contentLine -> {
                 try {
@@ -407,6 +437,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                 }
             });
         }
+        LOGGER.debug("Finished writing to file " + target.getAbsolutePath());
     }
 
 }
