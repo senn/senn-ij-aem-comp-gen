@@ -49,7 +49,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             File xmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + ".content.xml");
             if (!xmlFile.exists()) {
-                try (InputStream xmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/component.content.xml")) {
+                try (InputStream xmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("component.content.xml"))) {
                     if (xmlStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the component content.xml template");
                     }
@@ -94,7 +94,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
             throw new ComponentCreationException("Component HTML file already exists!");
         }
 
-        try(InputStream htmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/component.html")) {
+        try(InputStream htmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("component.html"))) {
             if (htmlStream == null) {
                 throw new ComponentCreationException("An error occurred while reading the HTML template");
             }
@@ -169,7 +169,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
         try {
             File dialogXmlFile = new File(PathUtils.validatePath(getFullComponentPath(), false, true) + "_cq_dialog/.content.xml");
             if (!dialogXmlFile.exists()) {
-                try (InputStream dialogXmlStream = PathUtils.getResourceAsStream("fileTemplates/internal/dialogconfig.content.xml")) {
+                try (InputStream dialogXmlStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("dialogconfig.content.xml"))) {
                     if (dialogXmlStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the dialog content.xml template");
                     }
@@ -248,7 +248,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
             //clientlib folder .content.xml file
             File contentFile = new File(PathUtils.validatePath(clientlibPath, false, true) + ".content.xml");
             if(!contentFile.exists()) {
-                try (InputStream clientlibContentStream = PathUtils.getResourceAsStream("fileTemplates/internal/clientlib.content.xml")) {
+                try (InputStream clientlibContentStream = PathUtils.getResourceAsStream(PathUtils.getTemplatePath("clientlib.content.xml"))) {
                     if (clientlibContentStream == null) {
                         throw new ComponentCreationException("An error occurred while reading the clientlib content.xml template");
                     }

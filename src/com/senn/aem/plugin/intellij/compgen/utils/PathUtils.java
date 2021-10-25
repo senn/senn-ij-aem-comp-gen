@@ -1,9 +1,6 @@
 package com.senn.aem.plugin.intellij.compgen.utils;
 
-import java.io.File;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -11,6 +8,8 @@ import org.apache.commons.lang.StringUtils;
  * @author bart.senn@gmail.com
  */
 public final class PathUtils {
+
+    private static final String TEMPLATE_FOLDER_PATH = "fileTemplates/internal/";
 
     private PathUtils() {}
 
@@ -33,6 +32,10 @@ public final class PathUtils {
 
     public static InputStream getResourceAsStream(String fileName) {
         return PathUtils.class.getClassLoader().getResourceAsStream(fileName);
+    }
+
+    public static String getTemplatePath(String templateName) {
+        return TEMPLATE_FOLDER_PATH + templateName;
     }
 
 }
