@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.senn.aem.plugin.intellij.compgen</id>
   <name>AEM Component Generator</name>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <vendor email="bart.senn@gmail.com" url="https://github.com/senn">senn</vendor>
 
   <description><![CDATA[
@@ -10,6 +10,7 @@
 
   <change-notes><![CDATA[
       Initial plugin
+        + removed some println statements
     ]]>
   </change-notes>
 
