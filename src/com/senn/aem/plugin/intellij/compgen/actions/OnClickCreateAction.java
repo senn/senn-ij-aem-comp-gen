@@ -72,9 +72,6 @@ public class OnClickCreateAction extends DumbAwareAction {
                 //show in editor
                 if(dialog.openAfterCreation()) {
                     LOGGER.debug("Opening " + createdFiles.size() + " files in editorMgr...");
-                    System.out.println("PRE: " + StringUtils.join(createdFiles, ","));
-                    System.out.println("POST: " + StringUtils.join(createdFiles.stream().sorted(FocusPriorityFile.COMPARATOR).collect(Collectors.toList()), ","));
-
                     final FileEditorManager editorMgr = FileEditorManager.getInstance(project);
                     createdFiles.stream()
                             .sorted(FocusPriorityFile.COMPARATOR)
