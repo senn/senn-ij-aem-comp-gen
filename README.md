@@ -42,6 +42,12 @@ The files will be opened in the editor if the option was selected.
 When creating another AEM Component, the plugin remembers the options you entered and selected the previous time and you only <i>need</i>
 to fill in the component name and component group.
 
+<span style="color: red;">It's important to remark that the plugin only works if the AEM parent module (ie. aem-guides-wknd) is 
+the <u>project root</u> in IntelliJ containing the modules for ui.apps, core, etc.<br />
+If you have another project root and the AEM parent module is a subfolder within that project, the files will not be placed in the
+correct location.<br />
+It should work for normal AEM project setups.</span>
+
 
 Cheers, <br />
 Bart
