@@ -1,5 +1,6 @@
 # senn-ij-aem-comp-gen // AEM Component Generator - IntelliJ Plugin
 
+<h2>About</h2>
 An IntelliJ plugin to easily create AEM components. <br />
 It has 
 <ul>
@@ -15,11 +16,32 @@ And also as a way to re-familiarize myself with Git.
 It was in <i>no way</i> intended to follow best practices in IntelliJ plugin development guidelines.  
 It doesn't use the new Kotlin/Gradle approach and it does all operations directly to the filesystem using java.io 
 instead of using IntelliJ's built-in Virtual Filesystem, PSI system and templating.
-<br />
+
+<h2>How to use</h2>
+
 To use the plugin, download the latest release and drop it inside the <code>plugins</code> folder of your IntelliJ.  
 Ideally using this hierarchy: <code>plugins/senn-ij-aem-comp-gen/lib/<b>senn-ij-aem-comp-gen.jar</b></code> but that's not required.
 Then start IntelliJ and rightclick on a folder or file and you should see the <code>New > AEM Component Files</code> option.
 <br /><br />
-If you do use this plugin, feel free to let me know!<br/>
+
+Click the context menu from anywhere within your project navigation: <code>New > AEM Component Files</code>
+<br />
+![context menu](https://i.imgur.com/MAkL74M.png)
+<br />
+A popup dialog appears providing options what to create and where to place the generated files.
+Fill in the required info, select which files to generate and indicate whether to open the files in the editor after creation.
+<br />
+As an example, we'll create a Crypto component.  We want to generate all the files and open them in the editor:
+![dialog](https://i.imgur.com/lOWjOJH.png)
+<br />
+Click OK and ...<br />
+![created files](https://i.imgur.com/gMq80a4.png) ![created sling model](https://i.imgur.com/kgQzKDk.png)
+<br />
+The files will be opened in the editor if the option was selected.
+<br /><br />
+When creating another AEM Component, the plugin remembers the options you entered and selected the previous time and you only <i>need</i>
+to fill in the component name and component group.
+
+
 Cheers, <br />
 Bart
