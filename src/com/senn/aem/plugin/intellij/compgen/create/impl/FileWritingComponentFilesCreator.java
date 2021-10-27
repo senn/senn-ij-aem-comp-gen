@@ -281,9 +281,11 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
 
         try {
             //make package folders
+            final String javaPkg = PathUtils.getJavaPackageAsFolderPath(componentConfig.getPackageName());
             final String packageFolderPath = PathUtils.validatePath(project.getBasePath(), false, true)
                     + PathUtils.validatePath(componentConfig.getJavaCodeRoot(), false, true)
-                    + PathUtils.getJavaPackageAsFolderPath(componentConfig.getPackageName());
+                    +  javaPkg
+                    + (!javaPkg.endsWith(componentConfig.getShortComponentName() + "/") ? PathUtils.validatePath(componentConfig.getShortComponentName(), false, true) : ""); //add pkg with component name if not provided manually
             final File packageFolders = new File(packageFolderPath);
             final File packageImplFolder = new File(packageFolderPath + "impl");
             LOGGER.debug("Making directory path: " + packageFolders.getAbsolutePath());
@@ -333,7 +335,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                             List<String> contentLines = new ArrayList<>();
                             String line;
                             while ((line = bufferedInterStreamReader.readLine()) != null) {
-                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName())
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName() + (!componentConfig.getPackageName().endsWith(componentConfig.getShortComponentName()) ? "." + componentConfig.getShortComponentName() : ""))
                                         .replace("{%COMP_NAME_SHORT%}", componentConfig.getSlingModelName())
                                         .replace("{%COMP_NAME_FULL%}", componentConfig.getFullComponentName());
                                 contentLines.add(line);
@@ -362,7 +364,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                             List<String> contentLines = new ArrayList<>();
                             String line;
                             while ((line = bufferedImplStreamReader.readLine()) != null) {
-                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName())
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName() + (!componentConfig.getPackageName().endsWith(componentConfig.getShortComponentName()) ? "." + componentConfig.getShortComponentName() : ""))
                                         .replace("{%COMP_NAME_SHORT%}", componentConfig.getSlingModelName())
                                         .replace("{%SLING_MODEL_NAME_FULL%}", componentConfig.getFullyQualifiedSlingModelName());
                                 contentLines.add(line);
