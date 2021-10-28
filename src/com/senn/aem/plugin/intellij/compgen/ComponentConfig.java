@@ -1,5 +1,8 @@
 package com.senn.aem.plugin.intellij.compgen;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 public class ComponentConfig {
@@ -80,7 +83,9 @@ public class ComponentConfig {
     //calculated methods
 
     public String getClientlibCategory() {
-        return StringUtils.join(getFullComponentName().split("/"), ".");
+        List<String> parts = new ArrayList<>(Arrays.asList(getFullComponentName().split("/")));
+        parts.remove("apps");
+        return StringUtils.join(parts, ".");
     }
 
     public String getShortComponentName() {
