@@ -101,9 +101,7 @@ public class ComponentConfig {
 
     public String getFullyQualifiedSlingModelName() {
         String pkg = getPackageName();
-        if(StringUtils.isNotBlank(pkg)) {
-            pkg += ".";
-        }
+        pkg += "." + getShortComponentName() + "."; //always add subpackage for component
         return pkg + getSlingModelName();
     }
 
