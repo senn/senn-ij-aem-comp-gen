@@ -2,25 +2,19 @@ package com.senn.aem.plugin.intellij.compgen.actions;
 
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.fileEditor.FileEditorManager;
-import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.ex.VirtualFileManagerEx;
+import com.senn.aem.plugin.intellij.compgen.ComponentConfig;
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
 import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
 import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
-import com.senn.aem.plugin.intellij.compgen.ComponentConfig;
 import com.senn.aem.plugin.intellij.compgen.utils.FocusPriorityFile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,11 +66,8 @@ public class OnClickCreateAction extends DumbAwareAction {
                 //show in editor
                 if(dialog.openAfterCreation()) {
                     LOGGER.debug("Opening " + createdFiles.size() + " files in editorMgr...");
-                    final FileEditorManager editorMgr = FileEditorManager.getInstance(project);
-                    createdFiles.stream()
-                            .sorted(FocusPriorityFile.COMPARATOR)
-                            .map(LocalFileSystem.getInstance()::refreshAndFindFileByIoFile)
-                            .forEach(file -> editorMgr.openTextEditor(new OpenFileDescriptor(project, file, 0), true));
+                    createdFiles.sort(FocusPriorityFile.COMPARATOR);
+                    UIUtils.openFilesInEditorAndProjectView(createdFiles, project, event);
                     LOGGER.debug("All created files are open in editor");
                 } else {
                     LOGGER.debug("Not opening files in editor...");
@@ -88,7 +79,7 @@ public class OnClickCreateAction extends DumbAwareAction {
             } finally {
                 //update UI
                 LOGGER.debug("Refreshing UI to reflect changes and show new files");
-                VirtualFileManagerEx.getInstance().refreshWithoutFileWatcher(false);
+                UIUtils.refreshUI(project);
             }
 
         }
