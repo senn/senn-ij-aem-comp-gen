@@ -2,6 +2,7 @@ package com.senn.aem.plugin.intellij.compgen.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.senn.aem.plugin.intellij.compgen.IJSessionConstants;
 import java.awt.*;
 import javax.swing.*;
 import org.apache.commons.lang.StringUtils;
@@ -21,6 +22,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
     private JTextField txtUiAppsRoot;
     private JTextField txtComponentGroup;
     private JCheckBox chkOpenFiles;
+    private JCheckBox chkPersistSettings;
 
     public ComponentOptionsDialog(@Nullable Project project) {
         super(project, true);
@@ -48,6 +50,7 @@ public class ComponentOptionsDialog extends DialogWrapper {
         chkCSS.setSelected(IJSessionConstants.SELECT_CSS);
         chkCode.setSelected(IJSessionConstants.SELECT_SLING_MODEL);
         chkOpenFiles.setSelected(IJSessionConstants.OPEN_AFTER_CREATION);
+        chkPersistSettings.setSelected(IJSessionConstants.PERSIST_SETTINGS);
 
         txtUiAppsRoot.setInputVerifier(new NotEmptyVerifier());
         txtCodeJavaRoot.setInputVerifier(new NotEmptyVerifier());
@@ -104,6 +107,8 @@ public class ComponentOptionsDialog extends DialogWrapper {
     }
 
     public boolean openAfterCreation() { return chkOpenFiles.isSelected(); }
+
+    public boolean persistSettings() { return chkPersistSettings.isSelected(); }
 
     private static class NotEmptyVerifier extends InputVerifier {
         @Override

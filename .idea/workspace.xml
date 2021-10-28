@@ -7,11 +7,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="">
+    <list default="true" id="c4d16df7-eacd-49f2-9bcf-b370bfbd6c4d" name="Changes" comment="removed System.out.println statements">
+      <change afterPath="$PROJECT_DIR$/.idea/ant.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/PersistentSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/PluginConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/PluginConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/actions/OnClickCreateAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/ComponentFilesCreatorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/create/impl/FileWritingComponentFilesCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/utils/ComponentConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ComponentConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/ComponentOptionsDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/ui/IJSessionConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/IJSessionConstants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +144,10 @@
       <workItem from="1634825539573" duration="24931000" />
       <workItem from="1635150992361" duration="74000" />
       <workItem from="1635151215421" duration="6927000" />
+      <workItem from="1635248319722" duration="344000" />
+      <workItem from="1635340257967" duration="2280000" />
+      <workItem from="1635343963592" duration="8788000" />
+      <workItem from="1635407182752" duration="16618000" />
     </task>
     <task id="LOCAL-00001" summary="work in progress 1">
       <created>1634231384327</created>
@@ -272,7 +282,98 @@
       <option name="project" value="LOCAL" />
       <updated>1635159318707</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="moved ComponentConfig.java to main package (didn't belong in utils)">
+      <created>1635166317398</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1635166317398</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added readme">
+      <created>1635167104912</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1635167104912</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added some extra readme info">
+      <created>1635167201318</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1635167201318</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added some extra readme info - usage">
+      <created>1635168018814</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1635168018814</updated>
+    </task>
+    <task id="LOCAL-00024" summary="removed System.out.println statements">
+      <created>1635236413378</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1635236413378</updated>
+    </task>
+    <task id="LOCAL-00025" summary="removed System.out.println statements">
+      <created>1635236469879</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1635236469879</updated>
+    </task>
+    <task id="LOCAL-00026" summary="updated README.md">
+      <created>1635342043246</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1635342043246</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added important remark in README.md">
+      <created>1635342358547</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1635342358547</updated>
+    </task>
+    <task id="LOCAL-00028" summary="sling model package fix">
+      <created>1635347690165</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1635347690165</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added handling of /apps folder showing up in clientlib category">
+      <created>1635349343160</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1635349343160</updated>
+    </task>
+    <task id="LOCAL-00030" summary="critical bug fixed: no component subpackage in imports and htl-use">
+      <created>1635403418442</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1635403418442</updated>
+    </task>
+    <task id="LOCAL-00031" summary="some major UI improvements like project view expansion to files">
+      <created>1635410642171</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1635410642171</updated>
+    </task>
+    <task id="LOCAL-00032" summary="plugin constants">
+      <created>1635421577254</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1635421577254</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,12 +382,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="work in progress 1" />
-    <MESSAGE value="renamed action label" />
-    <MESSAGE value="updated workspace.xml" />
-    <MESSAGE value="refactored and changed a whole lot (session constants, more config options, ...)" />
-    <MESSAGE value="working file creation and notifications" />
-    <MESSAGE value="some logging added" />
     <MESSAGE value="success notification when finished" />
     <MESSAGE value="working HTML files creation + some other improvements and refactored stuff" />
     <MESSAGE value="forgot to set UI_APPS_JCR_ROOT session constant" />
@@ -300,6 +395,29 @@
     <MESSAGE value="added some comment to dialogconfig.content.xml" />
     <MESSAGE value="removed unused variable" />
     <MESSAGE value="working sling model" />
-    <option name="LAST_COMMIT_MESSAGE" value="working sling model" />
+    <MESSAGE value="moved ComponentConfig.java to main package (didn't belong in utils)" />
+    <MESSAGE value="added readme" />
+    <MESSAGE value="added some extra readme info" />
+    <MESSAGE value="added some extra readme info - usage" />
+    <MESSAGE value="removed System.out.println statements" />
+    <MESSAGE value="updated README.md" />
+    <MESSAGE value="added important remark in README.md" />
+    <MESSAGE value="sling model package fix" />
+    <MESSAGE value="added handling of /apps folder showing up in clientlib category" />
+    <MESSAGE value="critical bug fixed: no component subpackage in imports and htl-use" />
+    <MESSAGE value="some major UI improvements like project view expansion to files" />
+    <MESSAGE value="plugin constants" />
+    <option name="LAST_COMMIT_MESSAGE" value="plugin constants" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/senn/aem/plugin/intellij/compgen/PersistentSettings.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

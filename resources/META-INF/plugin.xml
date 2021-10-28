@@ -1,21 +1,23 @@
 <idea-plugin>
   <id>com.senn.aem.plugin.intellij.compgen</id>
   <name>AEM Component Generator</name>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
   <vendor email="bart.senn@gmail.com" url="https://github.com/senn">senn</vendor>
 
   <description><![CDATA[
-      Plugin that can easily create AEM component files (
+      Plugin that can easily create AEM component files
     ]]></description>
 
   <change-notes><![CDATA[
-      Initial plugin
-        + removed some println statements
+      v0.1.2
+        + bugfixes and improvements
+        + UI improvements (project view can navigate to new files)
+        + persistence of selected values in workspace xml
     ]]>
   </change-notes>
 
   <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
-  <idea-version since-build="173.0"/>
+  <idea-version since-build="193.0"/>
 
   <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
        on how to target different products -->
@@ -23,7 +25,13 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <notificationGroup id="Senn.AEM" displayType="BALLOON" key="com.senn.aem"/>
+    <postStartupActivity id="initPlugin" implementation="com.senn.aem.plugin.intellij.compgen.PersistentSettings" />
   </extensions>
+
+  <projectListeners>
+    <listener class="com.senn.aem.plugin.intellij.compgen.PersistentSettings"
+              topic="com.intellij.openapi.project.ProjectManagerListener"/>
+  </projectListeners>
 
   <actions>
     <action
