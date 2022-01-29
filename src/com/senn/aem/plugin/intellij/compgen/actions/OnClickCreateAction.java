@@ -6,10 +6,11 @@ import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
 import com.senn.aem.plugin.intellij.compgen.ComponentConfig;
 import com.senn.aem.plugin.intellij.compgen.ComponentCreationException;
+import com.senn.aem.plugin.intellij.compgen.PersistentSettings;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreator;
 import com.senn.aem.plugin.intellij.compgen.create.ComponentFilesCreatorFactory;
 import com.senn.aem.plugin.intellij.compgen.ui.ComponentOptionsDialog;
-import com.senn.aem.plugin.intellij.compgen.ui.IJSessionConstants;
+import com.senn.aem.plugin.intellij.compgen.IJSessionConstants;
 import com.senn.aem.plugin.intellij.compgen.ui.UIUtils;
 import com.senn.aem.plugin.intellij.compgen.utils.FocusPriorityFile;
 import java.io.File;
@@ -52,7 +53,7 @@ public class OnClickCreateAction extends DumbAwareAction {
                     dialog.makeHtml()
             );
 
-            updateSessionConstants(dialog);
+            updateSessionConstants(dialog, project);
 
             try {
                 long startTime = System.currentTimeMillis();
@@ -85,9 +86,10 @@ public class OnClickCreateAction extends DumbAwareAction {
         }
     }
 
-    private void updateSessionConstants(final ComponentOptionsDialog dialog) {
+    private void updateSessionConstants(final ComponentOptionsDialog dialog, final Project project) {
         IJSessionConstants.SELECT_HTML = dialog.makeHtml();
         IJSessionConstants.JAVA_ROOT = dialog.getJavaRoot();
+        IJSessionConstants.COMPONENT_GROUP = dialog.getComponentGroup();
         IJSessionConstants.PACKAGE = dialog.getPackageName();
         IJSessionConstants.SELECT_HTML = dialog.makeHtml();
         IJSessionConstants.SELECT_DIALOG_XML = dialog.makeDialogXml();
@@ -97,7 +99,14 @@ public class OnClickCreateAction extends DumbAwareAction {
         IJSessionConstants.SELECT_SLING_MODEL = dialog.makeSlingModelCode();
         IJSessionConstants.UI_APPS_ROOT = dialog.getUiAppsRoot();
         IJSessionConstants.OPEN_AFTER_CREATION = dialog.openAfterCreation();
-        LOGGER.info("Setting session constants to selected values");
+        IJSessionConstants.PERSIST_SETTINGS = dialog.persistSettings();
+        LOGGER.info("Set session constants to selected values");
+
+        if(dialog.persistSettings()) {
+            PersistentSettings.persistSettings(project);
+            LOGGER.info("Also persisted session constants to selected values");
+        }
+
     }
 
     private List<File> createComponentFiles(final ComponentConfig config, final Project project) throws ComponentCreationException {

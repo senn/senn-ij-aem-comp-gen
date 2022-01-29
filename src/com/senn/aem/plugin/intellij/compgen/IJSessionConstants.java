@@ -1,4 +1,4 @@
-package com.senn.aem.plugin.intellij.compgen.ui;
+package com.senn.aem.plugin.intellij.compgen;
 
 /**
  * Some fields that should be kept in memory during the IntelliJ session.
@@ -22,4 +22,6 @@ public class IJSessionConstants {
 
     //booleans what to do
     public static boolean OPEN_AFTER_CREATION = true;
+    public static boolean PERSIST_SETTINGS = true;
+
 }
