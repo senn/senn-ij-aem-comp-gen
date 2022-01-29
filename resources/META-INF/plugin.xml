@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.senn.aem.plugin.intellij.compgen</id>
   <name>AEM Component Generator</name>
-  <version>0.1.3</version>
+  <version>0.1.6</version>
   <vendor email="bart.senn@gmail.com" url="https://github.com/senn">senn</vendor>
 
   <description><![CDATA[
@@ -9,10 +9,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      v0.1.2
-        + bugfixes and improvements
-        + UI improvements (project view can navigate to new files)
-        + persistence of selected values in workspace xml
+      see github repo
     ]]>
   </change-notes>
 
