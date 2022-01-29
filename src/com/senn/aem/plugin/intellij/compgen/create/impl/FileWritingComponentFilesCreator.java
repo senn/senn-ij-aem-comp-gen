@@ -308,7 +308,7 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                             List<String> contentLines = new ArrayList<>();
                             String line;
                             while ((line = bufferedPackageInfoStreamReader.readLine()) != null) {
-                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName());
+                                line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName() + (!componentConfig.getPackageName().endsWith(componentConfig.getShortComponentName()) ? "." + componentConfig.getShortComponentName() : ""))
                                 contentLines.add(line);
                             }
                             LOGGER.debug("Finished read and replace");
