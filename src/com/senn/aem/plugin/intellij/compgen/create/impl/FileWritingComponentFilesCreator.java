@@ -333,11 +333,17 @@ public class FileWritingComponentFilesCreator implements ComponentFilesCreator {
                     try (InputStreamReader interStreamReader = new InputStreamReader(interStream, StandardCharsets.UTF_8)) {
                         try (BufferedReader bufferedInterStreamReader = new BufferedReader(interStreamReader)) {
                             List<String> contentLines = new ArrayList<>();
+
+                            String appRemovedFullCompPath = componentConfig.getFullComponentName();
+                            if(appRemovedFullCompPath.startsWith("apps/")) {
+                                appRemovedFullCompPath = appRemovedFullCompPath.substring("apps/".length()); //because resourcetype doesn't want "apps/"
+                            }
+
                             String line;
                             while ((line = bufferedInterStreamReader.readLine()) != null) {
                                 line = line.replace("{%PACKAGE_NAME%}", componentConfig.getPackageName() + (!componentConfig.getPackageName().endsWith(componentConfig.getShortComponentName()) ? "." + componentConfig.getShortComponentName() : ""))
                                         .replace("{%COMP_NAME_SHORT%}", componentConfig.getSlingModelName())
-                                        .replace("{%COMP_NAME_FULL%}", componentConfig.getFullComponentName());
+                                        .replace("{%COMP_NAME_FULL%}", appRemovedFullCompPath);
                                 contentLines.add(line);
                             }
                             LOGGER.debug("Finished read and replace");

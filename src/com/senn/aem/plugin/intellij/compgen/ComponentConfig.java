@@ -39,9 +39,6 @@ public class ComponentConfig {
     }
 
     public String getFullComponentName() {
-        if(componentName.startsWith("apps/")) {
-            return componentName.substring("apps/".length());
-        }
         return componentName;
     }
 
