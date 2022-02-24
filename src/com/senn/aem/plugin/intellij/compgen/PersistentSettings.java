@@ -23,11 +23,12 @@ public class PersistentSettings implements StartupActivity, ProjectManagerListen
         loadSettings(project);
     }
 
-    @Override
-    public boolean canCloseProject(@NotNull Project project) {
-        persistSettings(project);
-        return ProjectManagerListener.super.canCloseProject(project);
-    }
+    //this method has been commented because it is scheduled for deletion in 2022.3
+//    @Override
+//    public boolean canCloseProject(@NotNull Project project) {
+//        persistSettings(project);
+//        return ProjectManagerListener.super.canCloseProject(project);
+//    }
 
     @Override
     public void projectClosing(@NotNull Project project) {
