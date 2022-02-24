@@ -26,28 +26,55 @@ public final class UIUtils {
 
     private static final String SENN_AEM_NOTIF_GROUP = "Senn.AEM";
 
+    /**
+     * Creates an error notification
+     * @see #notify(String, Project, NotificationType)
+     * @param message the notification message
+     * @param project the current project
+     */
     public static void notifyError(final String message, final Project project) {
-        LOGGER.debug("Using IntelliJ NotificationGroupManager to notify with type=ERROR: " + message);
-        NotificationGroupManager.getInstance()
-                .getNotificationGroup(SENN_AEM_NOTIF_GROUP)
-                .createNotification(message, NotificationType.ERROR)
-                .notify(project);
+        notify(message, project, NotificationType.ERROR);
     }
 
+    /**
+     * Creates an info notification
+     * @see #notify(String, Project, NotificationType)
+     * @param message the notification message
+     * @param project the current project
+     */
     public static void notifyInfo(final String message, final Project project) {
-        LOGGER.debug("Using IntelliJ NotificationGroupManager to notify with type=INFORMATION: " + message);
+        notify(message, project, NotificationType.INFORMATION);
+    }
+
+    /**
+     * Creates a notification for the provided type
+     * @param message the notification message
+     * @param project the current project
+     * @param notificationType the notification type
+     */
+    public static void notify(final String message, final Project project, final NotificationType notificationType) {
+        LOGGER.debug("Using IntelliJ NotificationGroupManager to notify with type=" + notificationType.name() + ": " + message);
         NotificationGroupManager.getInstance()
                 .getNotificationGroup(SENN_AEM_NOTIF_GROUP)
-                .createNotification(message, NotificationType.INFORMATION)
+                .createNotification(message, notificationType)
                 .notify(project);
     }
 
+    /**
+     * Refreshes the workspace UI
+     * @param project the current project
+     */
     public static void refreshUI(final Project project) {
         VirtualFileManagerEx.getInstance().refreshWithoutFileWatcher(false);
         ProjectView.getInstance(project).refresh();
     }
 
-    public static void openFilesInEditorAndProjectView(final List<File> files, final Project project, final AnActionEvent parentEvent) {
+    /**
+     * Opens a list of files in the editor and tree view
+     * @param files the list of files to open
+     * @param project the current project
+     */
+    public static void openFilesInEditorAndProjectView(final List<File> files, final Project project) {
         if(files == null || files.isEmpty()) return;
 
         files.forEach(file -> {
@@ -60,6 +87,11 @@ public final class UIUtils {
 
     }
 
+    /**
+     * Opens a "virtual file" in the editor
+     * @param virtualFile the virtual file to open
+     * @param project the current project
+     */
     public static void openFileInEditor(final VirtualFile virtualFile, final Project project) {
         if(virtualFile == null || !virtualFile.isValid()) return;
 
@@ -71,6 +103,11 @@ public final class UIUtils {
                 true);
     }
 
+    /**
+     * Navigates to a "virtual file" in the tree view
+     * @param virtualFile the virtual file to navigate to
+     * @param project the current project
+     */
     public static void navigateToFile(final VirtualFile virtualFile, final Project project) {
         final PsiFile psiFile = PsiManager.getInstance(project).findFile(virtualFile);
         if (psiFile != null) {

@@ -68,7 +68,7 @@ public class OnClickCreateAction extends DumbAwareAction {
                 if(dialog.openAfterCreation()) {
                     LOGGER.debug("Opening " + createdFiles.size() + " files in editorMgr...");
                     createdFiles.sort(FocusPriorityFile.COMPARATOR);
-                    UIUtils.openFilesInEditorAndProjectView(createdFiles, project, event);
+                    UIUtils.openFilesInEditorAndProjectView(createdFiles, project);
                     LOGGER.debug("All created files are open in editor");
                 } else {
                     LOGGER.debug("Not opening files in editor...");
